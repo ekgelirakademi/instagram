@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Ek Gelir Akademi · Instagram Satış Sistemi: Takipçiyi Müşteriye Çevir</title>
+<meta name="description" content="Ek Gelir Akademi — Instagram Satış Sistemi: Takipçiyi Müşteriye Çevir. 9 bölümlük premium interaktif satış eğitimi." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,300;9..144,400;9..144,500;9..144,600&family=Manrope:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+<style>
+:root {
+  --ega-bg: #07070a;
+  --ega-bg-2: #0b0b10;
+  --ega-ink: #efe7d4;
+  --ega-ink-soft: #b8b3a4;
+  --ega-ink-muted: #7a7464;
+  --ega-line: rgba(212, 175, 55, 0.16);
+  --ega-line-strong: rgba(212, 175, 55, 0.32);
+  --ega-gold: #d4af37;
+  --ega-gold-soft: #e9c66b;
+  --ega-gold-deep: #a87f1c;
+}
+* { box-sizing: border-box; margin: 0; padding: 0; }
+html, body { height: 100%; background: var(--ega-bg); }
+body {
+  font-family: "Manrope", system-ui, sans-serif;
+  color: var(--ega-ink);
+  -webkit-font-smoothing: antialiased;
+  overflow: hidden;
+}
+::selection { background: rgba(212,175,55,0.35); color: #fff; }
+button { font-family: inherit; cursor: pointer; }
+
+.ega-shell { position: relative; height: 100vh; width: 100vw; overflow: hidden; isolation: isolate; }
+.ega-bg-grain {
+  position: absolute; inset: 0; pointer-events: none; z-index: -2; opacity: .6;
+  background-image:
+    radial-gradient(rgba(212,175,55,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(255,255,255,0.02) 1px, transparent 1px);
+  background-size: 4px 4px, 9px 9px;
+  background-position: 0 0, 2px 2px;
+}
+.ega-bg-glow {
+  position: absolute; inset: 0; pointer-events: none; z-index: -1;
+  background:
+    radial-gradient(60% 50% at 12% 18%, rgba(212,175,55,0.10), transparent 60%),
+    radial-gradient(50% 40% at 88% 82%, rgba(168,127,28,0.08), transparent 60%),
+    linear-gradient(180deg, #07070a 0%, #050507 100%);
+}
+.ega-layout { display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+@media (max-width: 1024px) { .ega-layout { grid-template-columns: 1fr; } }
+
+.ega-topbar {
+  display: none; align-items: center; gap: 12px;
+  padding: 14px 18px; border-bottom: 1px solid var(--ega-line);
+  background: rgba(7,7,10,0.85); backdrop-filter: blur(14px);
+  position: sticky; top: 0; z-index: 30;
+}
+@media (max-width: 1024px) { .ega-topbar { display: flex; } }
+.ega-icon-btn {
+  width: 38px; height: 38px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border-radius: 10px; border: 1px solid var(--ega-line);
+  background: rgba(255,255,255,0.02); color: var(--ega-ink);
+  transition: all .2s ease;
+}
+.ega-icon-btn:hover { border-color: var(--ega-line-strong); color: var(--ega-gold-soft); }
+.ega-brand-mini { display: flex; align-items: center; gap: 10px; }
+.ega-brand-mark {
+  font-family: "Fraunces", serif; font-weight: 600; letter-spacing: 0.18em; font-size: 14px;
+  background: linear-gradient(180deg, var(--ega-gold-soft), var(--ega-gold-deep));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ega-brand-name { font-size: 13px; color: var(--ega-ink-soft); letter-spacing: .04em; }
+.ega-progress-mini { flex:1; height:2px; background: rgba(212,175,55,0.10); border-radius:2px; overflow:hidden; }
+.ega-progress-mini-fill { height:100%; background: linear-gradient(90deg, var(--ega-gold-deep), var(--ega-gold-soft)); transition: width .5s ease; }
+
+.ega-sidebar {
+  height: 100vh; border-right: 1px solid var(--ega-line);
+  background: linear-gradient(180deg, rgba(212,175,55,0.04), transparent 30%), rgba(7,7,10,0.6);
+  backdrop-filter: blur(20px);
+  display: flex; flex-direction: column; position: relative; z-index: 20;
+}
+.ega-brand { padding: 28px 26px 22px; border-bottom: 1px solid var(--ega-line); position: relative; }
+.ega-brand::after {
+  content: ""; position: absolute; left: 26px; right: 26px; bottom: -1px; height: 1px;
+  background: linear-gradient(90deg, transparent, var(--ega-gold), transparent); opacity: .5;
+}
+.ega-brand-eyebrow {
+  font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.32em;
+  color: var(--ega-gold-deep); text-transform: uppercase;
+}
+.ega-brand-title {
+  font-family: "Fraunces", serif; font-weight: 500; font-size: 28px; line-height: 1.05;
+  margin-top: 10px; letter-spacing: -0.01em; color: var(--ega-ink);
+}
+.ega-brand-title em {
+  font-style: italic;
+  background: linear-gradient(180deg, var(--ega-gold-soft), var(--ega-gold-deep));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ega-brand-sub { margin-top: 12px; font-size: 12.5px; color: var(--ega-ink-muted); line-height: 1.5; }
+.ega-nav { flex: 1; overflow-y: auto; padding: 16px 14px 24px; scrollbar-width: thin; scrollbar-color: rgba(212,175,55,0.25) transparent; }
+.ega-nav::-webkit-scrollbar { width: 6px; }
+.ega-nav::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.2); border-radius: 3px; }
+.ega-nav-label {
+  font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.28em;
+  color: var(--ega-ink-muted); padding: 6px 12px 14px; text-transform: uppercase;
+}
+.ega-nav-item {
+  width: 100%; display: grid; grid-template-columns: 32px 1fr; align-items: center; gap: 12px;
+  padding: 11px 12px; border-radius: 10px; background: transparent; border: 1px solid transparent;
+  color: var(--ega-ink-soft); text-align: left;
+  transition: background .25s, color .25s, border-color .25s; margin-bottom: 2px;
+}
+.ega-nav-item:hover { background: rgba(212,175,55,0.05); color: var(--ega-ink); }
+.ega-nav-item .num { font-family: "JetBrains Mono", monospace; font-size: 11px; color: var(--ega-ink-muted); }
+.ega-nav-item .label { font-size: 14px; line-height: 1.3; }
+.ega-nav-item.active {
+  background: linear-gradient(180deg, rgba(212,175,55,0.10), rgba(212,175,55,0.02));
+  border-color: var(--ega-line-strong); color: var(--ega-ink);
+}
+.ega-nav-item.active .num { color: var(--ega-gold-soft); }
+.ega-nav-item.active .label { color: #fff; }
+.ega-sidebar-foot {
+  padding: 18px 26px 22px; border-top: 1px solid var(--ega-line);
+  font-size: 11px; color: var(--ega-ink-muted); letter-spacing: 0.04em;
+  display: flex; align-items: center; justify-content: space-between;
+}
+.ega-sidebar-foot .dot { width: 6px; height: 6px; border-radius: 999px; background: var(--ega-gold); box-shadow: 0 0 12px var(--ega-gold); }
+@media (max-width: 1024px) {
+  .ega-sidebar {
+    position: fixed; inset: 0 30% 0 0; height: 100vh; z-index: 40;
+    transform: translateX(-100%); transition: transform .3s ease;
+  }
+  .ega-sidebar.open { transform: translateX(0); }
+}
+
+.ega-main { position: relative; height: 100vh; display: flex; flex-direction: column; }
+.ega-progress-bar { position: absolute; top: 0; left: 0; right: 0; height: 2px; background: rgba(212,175,55,0.08); z-index: 10; }
+.ega-progress-fill {
+  height: 100%; background: linear-gradient(90deg, var(--ega-gold-deep), var(--ega-gold-soft), var(--ega-gold));
+  box-shadow: 0 0 14px var(--ega-gold); transition: width .5s cubic-bezier(.4,0,.2,1);
+}
+.ega-scroll { flex: 1; overflow-y: auto; scroll-behavior: smooth; scrollbar-width: thin; scrollbar-color: rgba(212,175,55,0.2) transparent; }
+.ega-scroll::-webkit-scrollbar { width: 8px; }
+.ega-scroll::-webkit-scrollbar-thumb { background: rgba(212,175,55,0.18); border-radius: 4px; }
+
+.ega-section { max-width: 1080px; margin: 0 auto; padding: 72px 56px 40px; animation: section-in .55s cubic-bezier(.2,.7,.2,1) both; }
+@media (max-width: 768px) { .ega-section { padding: 40px 22px 20px; } }
+@keyframes section-in { from { opacity: 0; transform: translateY(14px); } to { opacity: 1; transform: translateY(0); } }
+.ega-section-eyebrow {
+  display: inline-flex; align-items: center; gap: 12px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase;
+  color: var(--ega-gold); margin-bottom: 18px;
+}
+.ega-section-eyebrow::before { content: ""; width: 36px; height: 1px; background: linear-gradient(90deg, transparent, var(--ega-gold)); }
+.ega-section-title {
+  font-family: "Fraunces", serif; font-weight: 400;
+  font-size: clamp(34px, 4vw, 54px); line-height: 1.04; letter-spacing: -0.02em; color: #fff; margin-bottom: 18px;
+}
+.ega-section-title em {
+  font-style: italic; font-weight: 500;
+  background: linear-gradient(180deg, #f3dca0 0%, var(--ega-gold) 60%, var(--ega-gold-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ega-section-lead { font-size: 17px; line-height: 1.65; color: var(--ega-ink-soft); max-width: 780px; margin-bottom: 38px; }
+.ega-divider { height: 1px; background: linear-gradient(90deg, transparent, var(--ega-line-strong), transparent); margin: 44px 0; }
+
+.ega-h3 {
+  font-family: "Fraunces", serif; font-weight: 500; font-size: 24px; line-height: 1.25;
+  letter-spacing: -0.01em; color: #fff; margin: 28px 0 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.ega-h3-bar { width: 4px; height: 22px; background: var(--ega-gold); border-radius: 2px; box-shadow: 0 0 12px rgba(212,175,55,0.6); }
+.ega-p { color: var(--ega-ink-soft); font-size: 15.5px; line-height: 1.7; margin: 0 0 14px; }
+.ega-p strong { color: var(--ega-ink); font-weight: 600; }
+.ega-p em { color: var(--ega-gold-soft); font-style: normal; }
+
+.ega-callout {
+  margin: 22px 0; padding: 22px 24px; border-radius: 14px;
+  background: linear-gradient(180deg, rgba(212,175,55,0.08), rgba(212,175,55,0.02));
+  border: 1px solid var(--ega-line-strong); position: relative; overflow: hidden;
+}
+.ega-callout::before {
+  content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 3px;
+  background: linear-gradient(180deg, var(--ega-gold-soft), var(--ega-gold-deep));
+}
+.ega-callout-title {
+  font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.24em;
+  text-transform: uppercase; color: var(--ega-gold); margin-bottom: 10px;
+}
+.ega-callout-body { color: var(--ega-ink); font-size: 15px; line-height: 1.65; }
+
+.ega-stats { display: grid; gap: 14px; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); margin: 24px 0; }
+.ega-stat {
+  padding: 22px; border-radius: 14px;
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0));
+  border: 1px solid var(--ega-line);
+  transition: transform .3s, border-color .3s, background .3s;
+}
+.ega-stat:hover {
+  transform: translateY(-3px); border-color: var(--ega-line-strong);
+  background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(212,175,55,0.01));
+}
+.ega-stat-value {
+  font-family: "Fraunces", serif; font-weight: 500; font-size: 36px; line-height: 1;
+  background: linear-gradient(180deg, #f3dca0 0%, var(--ega-gold) 80%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ega-stat-label { margin-top: 10px; color: var(--ega-ink-soft); font-size: 13.5px; line-height: 1.4; }
+
+.ega-cards { display: grid; gap: 16px; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); margin: 22px 0; }
+.ega-card {
+  padding: 24px 22px; border-radius: 14px; border: 1px solid var(--ega-line);
+  background: linear-gradient(180deg, rgba(255,255,255,0.025), rgba(255,255,255,0));
+  transition: all .3s; position: relative; overflow: hidden;
+}
+.ega-card::before {
+  content: ""; position: absolute; inset: 0;
+  background: radial-gradient(120% 80% at 0% 0%, rgba(212,175,55,0.10), transparent 50%);
+  opacity: 0; transition: opacity .35s; pointer-events: none;
+}
+.ega-card:hover { border-color: var(--ega-line-strong); transform: translateY(-3px); }
+.ega-card:hover::before { opacity: 1; }
+.ega-card-head { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; }
+.ega-card-num {
+  width: 32px; height: 32px; border-radius: 8px;
+  display: inline-flex; align-items: center; justify-content: center;
+  border: 1px solid var(--ega-line-strong); color: var(--ega-gold);
+  font-family: "JetBrains Mono", monospace; font-size: 12px;
+}
+.ega-card-title { font-family: "Fraunces", serif; font-weight: 500; font-size: 18px; color: #fff; }
+.ega-card-body { color: var(--ega-ink-soft); font-size: 14px; line-height: 1.6; }
+
+.ega-steps { margin: 24px 0; }
+.ega-step {
+  display: grid; grid-template-columns: 56px 1fr; gap: 18px;
+  padding: 20px 0; border-bottom: 1px solid var(--ega-line);
+}
+.ega-step:last-child { border-bottom: 0; }
+.ega-step-num {
+  font-family: "Fraunces", serif; font-size: 36px; line-height: 1; font-weight: 500;
+  background: linear-gradient(180deg, var(--ega-gold-soft), var(--ega-gold-deep));
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ega-step-title { font-family: "Fraunces", serif; font-weight: 500; color: #fff; font-size: 18.5px; margin-bottom: 6px; }
+.ega-step-body { color: var(--ega-ink-soft); font-size: 14.5px; line-height: 1.65; }
+
+.ega-table { margin: 22px 0; border: 1px solid var(--ega-line); border-radius: 14px; overflow: hidden; }
+.ega-table-row { display: grid; align-items: stretch; }
+.ega-table-row > div {
+  padding: 14px 18px; border-right: 1px solid var(--ega-line);
+  font-size: 14px; color: var(--ega-ink-soft); line-height: 1.55;
+}
+.ega-table-row > div:last-child { border-right: 0; }
+.ega-table-row + .ega-table-row { border-top: 1px solid var(--ega-line); }
+.ega-table-head > div {
+  background: linear-gradient(180deg, rgba(212,175,55,0.12), rgba(212,175,55,0.04));
+  color: var(--ega-gold-soft);
+  font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.16em; text-transform: uppercase;
+}
+
+.ega-prosncons { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; margin: 22px 0; }
+@media (max-width: 768px) { .ega-prosncons { grid-template-columns: 1fr; } }
+.ega-pc { border: 1px solid var(--ega-line); border-radius: 14px; padding: 20px 22px; background: rgba(255,255,255,0.015); }
+.ega-pc-title {
+  font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ega-gold); margin-bottom: 12px;
+}
+.ega-pc.con .ega-pc-title { color: #c9826a; }
+.ega-pc ul { list-style: none; }
+.ega-pc li {
+  padding: 8px 0 8px 22px; position: relative;
+  color: var(--ega-ink-soft); font-size: 14px; line-height: 1.55;
+  border-bottom: 1px dashed rgba(212,175,55,0.08);
+}
+.ega-pc li:last-child { border-bottom: 0; }
+.ega-pc li::before {
+  content: ""; position: absolute; left: 4px; top: 16px;
+  width: 8px; height: 8px; border-radius: 2px;
+  background: var(--ega-gold); transform: rotate(45deg);
+  box-shadow: 0 0 8px rgba(212,175,55,0.5);
+}
+.ega-pc.con li::before { background: #c9826a; box-shadow: 0 0 8px rgba(201,130,106,0.4); }
+
+.ega-vaka {
+  margin: 26px 0; padding: 26px 28px; border-radius: 16px;
+  background: linear-gradient(180deg, rgba(212,175,55,0.04), transparent 80%), rgba(255,255,255,0.02);
+  border: 1px solid var(--ega-line);
+}
+.ega-vaka-label {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: 0.3em;
+  text-transform: uppercase; color: var(--ega-gold); margin-bottom: 14px;
+}
+.ega-vaka-title { font-family: "Fraunces", serif; font-weight: 500; font-size: 22px; color: #fff; margin-bottom: 14px; }
+.ega-vaka-grid { display: grid; gap: 18px; grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 768px) { .ega-vaka-grid { grid-template-columns: 1fr; } }
+.ega-vaka-col h5 {
+  font-family: "JetBrains Mono", monospace; font-size: 10.5px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--ega-gold-deep); margin-bottom: 8px;
+}
+.ega-vaka-col p { color: var(--ega-ink-soft); font-size: 14px; line-height: 1.6; }
+
+.ega-takeaways {
+  border: 1px solid var(--ega-line-strong); border-radius: 16px; padding: 26px 28px;
+  background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(212,175,55,0.01));
+  margin: 26px 0;
+}
+.ega-takeaways h4 {
+  font-family: "Fraunces", serif; font-weight: 500; font-size: 22px; color: #fff; margin-bottom: 14px;
+  display: flex; align-items: center; gap: 12px;
+}
+.ega-takeaways h4 .ega-h3-bar { width: 6px; height: 24px; }
+.ega-takeaways ol { list-style: none; counter-reset: tk; }
+.ega-takeaways li {
+  counter-increment: tk; padding: 12px 0 12px 44px; position: relative;
+  color: var(--ega-ink); font-size: 14.5px; line-height: 1.65;
+  border-bottom: 1px dashed rgba(212,175,55,0.10);
+}
+.ega-takeaways li:last-child { border-bottom: 0; }
+.ega-takeaways li::before {
+  content: counter(tk, decimal-leading-zero);
+  position: absolute; left: 0; top: 11px;
+  font-family: "JetBrains Mono", monospace; font-size: 12px;
+  color: var(--ega-gold); letter-spacing: 0.04em;
+}
+
+.ega-hero { padding: 64px 56px 60px; max-width: 1080px; margin: 0 auto; }
+@media (max-width: 768px) { .ega-hero { padding: 40px 22px 30px; } }
+.ega-hero-mark {
+  font-family: "JetBrains Mono", monospace; letter-spacing: 0.36em; color: var(--ega-gold);
+  font-size: 11px; text-transform: uppercase; margin-bottom: 22px;
+}
+.ega-hero-title {
+  font-family: "Fraunces", serif; font-weight: 300;
+  font-size: clamp(48px, 7vw, 88px); line-height: 0.98; letter-spacing: -0.035em; color: #fff;
+}
+.ega-hero-title em {
+  font-style: italic; font-weight: 400;
+  background: linear-gradient(180deg, #f3dca0 0%, var(--ega-gold) 50%, var(--ega-gold-deep) 100%);
+  -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+.ega-hero-sub { font-size: 18px; line-height: 1.6; color: var(--ega-ink-soft); max-width: 720px; margin-top: 28px; }
+.ega-hero-meta {
+  margin-top: 36px; display: flex; flex-wrap: wrap; gap: 28px;
+  font-family: "JetBrains Mono", monospace; font-size: 11px; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--ega-ink-muted);
+}
+.ega-hero-meta span strong { color: var(--ega-gold-soft); font-weight: 500; }
+.ega-hero-rule { height: 1px; background: linear-gradient(90deg, transparent, var(--ega-line-strong), transparent); margin: 44px 0; }
+.ega-toc { display: grid; gap: 10px; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); margin-top: 12px; }
+.ega-toc-item {
+  display: grid; grid-template-columns: 32px 1fr; gap: 12px; align-items: center;
+  padding: 14px 16px; border-radius: 12px; border: 1px solid var(--ega-line);
+  background: rgba(255,255,255,0.02); transition: all .25s;
+}
+.ega-toc-item:hover {
+  border-color: var(--ega-line-strong);
+  background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(212,175,55,0));
+  transform: translateY(-2px);
+}
+.ega-toc-num { color: var(--ega-gold); font-family: "JetBrains Mono", monospace; font-size: 12px; }
+.ega-toc-label { color: var(--ega-ink); font-size: 14.5px; font-weight: 500; }
+
+.ega-pager {
+  max-width: 1080px; margin: 30px auto 0; padding: 0 56px;
+  display: grid; grid-template-columns: 1fr auto 1fr; align-items: center; gap: 14px;
+}
+@media (max-width: 768px) { .ega-pager { padding: 0 22px; } }
+.ega-pager-btn {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 14px 18px; border-radius: 12px; border: 1px solid var(--ega-line);
+  background: rgba(255,255,255,0.02); color: var(--ega-ink-soft);
+  font-size: 13.5px; transition: all .25s;
+}
+.ega-pager-btn:hover:not(:disabled) {
+  border-color: var(--ega-line-strong);
+  background: linear-gradient(180deg, rgba(212,175,55,0.06), rgba(212,175,55,0));
+  color: #fff;
+}
+.ega-pager-btn:disabled { opacity: .35; cursor: not-allowed; }
+.ega-pager-next { justify-self: end; }
+.ega-pager-count { font-family: "JetBrains Mono", monospace; color: var(--ega-gold-soft); font-size: 12px; letter-spacing: 0.16em; }
+
+.ega-footer {
+  max-width: 1080px; margin: 60px auto 40px; padding: 0 56px;
+  text-align: center; color: var(--ega-ink-muted); font-size: 12px; letter-spacing: 0.08em;
+}
+.ega-foot-rule { height: 1px; background: linear-gradient(90deg, transparent, var(--ega-line-strong), transparent); margin-bottom: 22px; }
+.ega-foot-mark {
+  background: linear-gradient(180deg, var(--ega-gold-soft), var(--ega-gold-deep));
+  -webkit-background-clip: text; background-clip: text; color: transparent; font-weight: 600;
+}
+.ega-foot-sep { margin: 0 10px; opacity: .6; }
+.ega-foot-sub { margin-top: 8px; opacity: 0.7; }
+</style>
+</head>
+<body>
+<div class="ega-shell">
+  <div class="ega-bg-grain"></div>
+  <div class="ega-bg-glow"></div>
+
+  <header class="ega-topbar">
+    <button class="ega-icon-btn" id="menuToggle" aria-label="Menü">☰</button>
+    <div class="ega-brand-mini">
+      <span class="ega-brand-mark">EGA</span>
+      <span class="ega-brand-name">Ek Gelir Akademi</span>
+    </div>
+    <div class="ega-progress-mini"><div class="ega-progress-mini-fill" id="progressMini"></div></div>
+  </header>
+
+  <div class="ega-layout">
+    <aside class="ega-sidebar" id="sidebar">
+      <div class="ega-brand">
+        <div class="ega-brand-eyebrow">Premium Sunum</div>
+        <h1 class="ega-brand-title">Ek Gelir <em>Akademi</em></h1>
+        <p class="ega-brand-sub">Instagram Satış Sistemi: Takipçiyi Müşteriye Çevir. 10 bölümlük interaktif satış çalışması.</p>
+      </div>
+      <nav class="ega-nav" id="nav" aria-label="Bölümler">
+        <div class="ega-nav-label">Bölümler</div>
+      </nav>
+      <div class="ega-sidebar-foot"><span>Edisyon · 2026</span><span class="dot"></span></div>
+    </aside>
+
+    <main class="ega-main">
+      <div class="ega-progress-bar"><div class="ega-progress-fill" id="progressFill"></div></div>
+      <div class="ega-scroll" id="scroll">
+        <div id="sectionContainer"></div>
+        <nav class="ega-pager">
+          <button class="ega-pager-btn" id="prevBtn">‹ <span id="prevLabel">Başlangıç</span></button>
+          <div class="ega-pager-count" id="pagerCount">01 / 13</div>
+          <button class="ega-pager-btn ega-pager-next" id="nextBtn"><span id="nextLabel">Sonraki</span> ›</button>
+        </nav>
+        <footer class="ega-footer">
+          <div class="ega-foot-rule"></div>
+          <p>
+            <span class="ega-foot-mark">Ek Gelir Akademi</span>
+            <span class="ega-foot-sep">·</span>
+            Instagram Satış Sistemi: Takipçiyi Müşteriye Çevir · Premium Sunum Serisi
+          </p>
+          <p class="ega-foot-sub">Bu sunum eğitim ve bilgilendirme amaçlıdır.</p>
+        </footer>
+      </div>
+    </main>
+  </div>
+</div>
+
+<script>
+/* ============ İçerik ============ */
+const SECTIONS = [
+  {
+    id: "intro", shortTitle: "Açılış", hero: true,
+    toc: [
+      "Satış Zihniyeti · Takipçi ≠ Müşteri",
+      "Satan Profil: Vitrin Kurulumu",
+      "Alıcı Avatarı ve Alım Yolculuğu",
+      "Satış Odaklı İçerik Sistemi",
+      "Reels ile Alıcı Yakalama: Hook–Story–Offer",
+      "Hikayelerde Günlük Satış Ritmi",
+      "DM Satış Süreci: Konuşmadan Satışa",
+      "Bio Link ve Satış Hunisi",
+      "Sosyal Kanıt ve Güven Katmanları",
+      "Ölçekleme: Retargeting, LTV, Sadakat"
+    ]
+  },
+
+  /* 1 */
+  { id:"zihniyet", shortTitle:"Satış Zihniyeti",
+    title:'Satış <em>Zihniyeti</em> · Takipçi ≠ Müşteri',
+    lead:"Instagram'da 100 bin takipçili hesapların büyük çoğunluğu tek kuruş kazanmaz. 3 bin doğru takipçili bir hesap ise ayda düzenli sipariş alır. Fark 'takipçi sayısı' değil, 'satış sistemi'dir. Bu bölüm eğitimin tüm mantığını kuran zihinsel temeldir.",
+    blocks:[
+      { type:"h", text:"Neden Çoğu Instagram Hesabı Satmıyor?" },
+      { type:"p", text:"Instagram'da satış problemi <strong>görünürlük problemi değildir</strong>. Erişim, beğeni ve takipçi kazanan hesapların çoğu satamıyor çünkü <em>takipçi biriktiriyorlar, alıcı biriktirmiyorlar</em>. Takipçi 'içeriğini seven kişi'dir; müşteri 'sorununu çözdüğüne para verecek kişi'dir. İkisi arasındaki köprü — Satış Sistemi — kurulmadıkça hesap sadece bir gösteri sahnesi olarak kalır." },
+      { type:"callout", title:"Temel Denklem", text:"<strong>Trafik × Dönüşüm × Sepet Değeri × Tekrar Satın Alma = Gelir.</strong> Trafik (erişim) sadece dört değişkenden biridir. Sadece trafik büyütmek, geri kalanı boşluk bırakır — o yüzden çoğu 'büyük hesap' fakir çalışır." },
+      { type:"h", text:"Takipçi vs Müşteri · Kritik Ayrım" },
+      { type:"table",
+        headers:["Boyut","Takipçi","Alıcı / Müşteri"],
+        rows:[
+          ["Motivasyon","İçeriği tüketmek istiyor","Bir sorunu çözmek istiyor"],
+          ["Değer Ölçüsü","İçerik kalitesi","Ürün/hizmetin sağladığı sonuç"],
+          ["Etkileşim Türü","Beğeni, yorum","DM, ziyaret, satın alma"],
+          ["Kazanç Etkisi","Vanity metric","Gelir + LTV"],
+          ["Kaybetme Maliyeti","Düşük","Yüksek (CAC yatırımı yandı)"]
+        ]
+      },
+      { type:"h", text:"4 Aşamalı Alıcı Merdiveni" },
+      { type:"cards", items:[
+        { title:"Yabancı", body:"Sizi hiç tanımıyor. İlk 3 saniyede dikkat çekmezseniz kaydırılıp gidersiniz." },
+        { title:"Takipçi", body:"İçeriğinizi seviyor ama satın almak için henüz güven ve neden eksik." },
+        { title:"Sıcak Aday", body:"DM atmış, link tıklamış, kaydetmiş — niyet sinyali göstermiş." },
+        { title:"Müşteri", body:"Satın almış. Asıl iş burada bitmez — LTV ve sadakat başlar." }
+      ]},
+      { type:"p", text:"Her içerik parçası kullanıcıyı <em>bir üst basamağa</em> taşımak için üretilmeli. 'Beğeni topla' değil, 'yabancıyı adaya, adayı müşteriye taşı' düşüncesi tüm içerik takvimini yeniden yazar." },
+      { type:"h", text:"Satış Sisteminin 5 Bileşeni" },
+      { type:"steps", items:[
+        { title:"Doğru Kitle (Trafik)", body:"Rastgele takipçi değil, ideal alıcı avatarına uyan trafik." },
+        { title:"Satan Profil (Dönüşüm)", body:"Profil ziyareti → takip / DM / link tıklaması dönüşüm oranı." },
+        { title:"Değer Merdiveni (İçerik)", body:"Farkındalık → ilgi → arzu → aksiyon içeriklerinin dengesi." },
+        { title:"Kapama Süreci (DM + Link)", body:"Aday → müşteri dönüşümünü yapan yer: DM script ve landing." },
+        { title:"Retargeting + LTV (Sadakat)", body:"Mevcut müşterinin ikinci ve üçüncü satın alması — asıl kâr burada." }
+      ]},
+      { type:"callout", title:"Değişecek Cümle", text:"'Nasıl daha çok takipçi kazanırım?' sorusu bu eğitimden sonra tamamen değişir: <strong>'Bir kişi profilime düştüğünde onu müşteri yapmak için hangi sistemi kurmalıyım?'</strong>" },
+      { type:"h", text:"Rakamlarla Alıcı Dönüşümü" },
+      { type:"stats", items:[
+        { value:"%1-3", label:"Ortalama profil ziyareti → takip dönüşümü" },
+        { value:"%0,5-2", label:"Ortalama takipçi → müşteri dönüşümü" },
+        { value:"5-8×", label:"Yeni müşteri edinme, mevcut müşteriden pahalıdır" },
+        { value:"%20+", label:"Doğru sistemde takipçi → müşteri dönüşümü ulaşabildiği eşik" }
+      ]},
+      { type:"vaka",
+        title:"El Yapımı Mum Markası · 4.200 Takipçiyle Aylık 180 Sipariş",
+        baglam:"Bursa'da butik mum üreticisi. 4.200 takipçi, ayda 20-25 sipariş, sürekli kampanya, sürekli indirim, kâr yok. 'Takipçi az' sanıyordu.",
+        analiz:"Problem takipçi sayısı değildi: profil bio'da net teklif yoktu, içeriğin %90'ı ürün fotoğrafıydı (sadece 'ilgi' aşaması), DM'lere 8-10 saat sonra dönülüyordu, tekrar sipariş için hiçbir sistem yoktu. 'Satış merdiveni' kuruldu: her hafta 1 hikaye içeriği, 2 Reels, 1 DM tetikleyen içerik + otomatik DM cevap şablonu.",
+        sonuc:"3 ayda takipçi sadece 5.900'a çıktı (%40) ama ayda 180 sipariş, ortalama sepet 2,3 kat büyüdü. Aynı 'küçük' hesap; sistem sayesinde 6 katına satmaya başladı."
+      },
+      { type:"takeaways", items:[
+        "Instagram'da satış problemi görünürlük değil, sistem eksikliğidir.",
+        "Takipçi ≠ müşteri; ikisi arasında 4 basamaklı bir merdiven var.",
+        "Gelir formülü: Trafik × Dönüşüm × Sepet × Tekrar Satın Alma.",
+        "Küçük ama nitelikli kitle, büyük ama pasif kitleden daima daha kârlıdır.",
+        "Bu eğitim boyunca hedef: yeni takipçi değil, yeni müşteri üretmektir."
+      ]}
+    ]
+  },
+
+  /* 2 */
+  { id:"profil-vitrin", shortTitle:"Satan Profil: Vitrin Kurulumu",
+    title:'Satan <em>Profil</em>: Vitrin Kurulumu',
+    lead:"Profiliniz gerçek bir mağazanın vitrinidir. Bir kullanıcı profilinizde ortalama 7 saniye kalır. Bu 7 saniyede 'burada aradığım şey var, güvenilir görünüyor, tıklamaya değer' sinyallerini vermezseniz — trafik gelir, satış gelmez.",
+    blocks:[
+      { type:"h", text:"Profil = Landing Page" },
+      { type:"p", text:"Profesyonel işletmelerde <strong>her Instagram profili bir dönüşüm sayfasıdır</strong>. Kullanıcı buraya düşer, karar verir. Feed'iniz ürün rafı, öne çıkan hikayeler menü, bio ise satış vitrinizin sloganıdır. Her element tek soruya cevap vermeli: <em>'Bu marka bana ne satıyor ve neden şimdi almalıyım?'</em>" },
+      { type:"h", text:"Satan Profilin 6 Sabit Elementi" },
+      { type:"cards", items:[
+        { title:"Profil Fotoğrafı", body:"Marka logosu net + yuvarlak alanda kesilmemiş. Kişisel markada yüz + sade arka plan." },
+        { title:"İsim (Name Alanı)", body:"Marka + niş + fayda: 'Zeynep · Kişisel Marka Danışmanı'. Aramada bulunma anahtarı." },
+        { title:"Bio (Değer Cümlesi)", body:"3 satır: kime, hangi sorunu, hangi sonuçla çözersin. 150 karakter içinde." },
+        { title:"CTA + Link", body:"'DM'den fiyat al', 'Ücretsiz rehber → linkte' gibi tek net eylem." },
+        { title:"Öne Çıkan Hikayeler", body:"Satış rafı: Ürün, Yorumlar, Sıkça Sorulanlar, Nasıl Sipariş, Referans." },
+        { title:"Feed İlk 9 Kare", body:"Satış vitrini: teklif, sosyal kanıt, ürün, arkasındaki insan — dengeli 9 kare." }
+      ]},
+      { type:"callout", title:"Kural: Bio Bir Slogan Değil, Sözleşmedir", text:"Bio okunduğunda kullanıcı 'ne verdiğinizi' ve 'sonrasında ne yapması gerektiğini' bilmeli. 'Yaratıcı ruh · İyi hayaller' gibi cümleler kimseyi müşteri yapmaz. <strong>Kime → hangi sorunu → nasıl çözersin + net CTA</strong>." },
+      { type:"h", text:"Değer Cümlesi Formülü · 3 Satırda Satış" },
+      { type:"steps", items:[
+        { title:"1. Satır · Kime + Ne", body:"'Küçük işletmeler için Instagram satış danışmanlığı.'" },
+        { title:"2. Satır · Fayda / Sonuç", body:"'Takipçini 90 günde düzenli müşteriye çeviren sistem.'" },
+        { title:"3. Satır · CTA", body:"'Ücretsiz Satış Denetimi → linkteki formu doldur.'" }
+      ]},
+      { type:"h", text:"Öne Çıkan Hikayeler · Dijital Menü" },
+      { type:"cards", items:[
+        { title:"Ürünler / Hizmetler", body:"Kısa ürün turu; her kapakta fiyat aralığı ve öne çıkan fayda." },
+        { title:"Referanslar", body:"Ekran görüntüsü + kısa hikâye + sonuç. En az 5–8 örnek." },
+        { title:"Nasıl Sipariş", body:"3 adımda süreç. 'DM at → seçim → ödeme' netliği." },
+        { title:"SSS", body:"'Kargo süresi', 'iade var mı', 'ödeme yolları' → satın alma önündeki engelleri kaldırır." },
+        { title:"Öncesi / Sonrası", body:"Somut dönüşüm gösterir. Hizmet sektöründe altın vurgudur." },
+        { title:"Arkadaki İnsan", body:"Marka değerleri, kurucu hikâyesi — güven inşası." }
+      ]},
+      { type:"h", text:"Feed İlk 9 Kare · Vitrin Denge Tablosu" },
+      { type:"table",
+        headers:["Kare Tipi","Görev","İdeal Sayı (İlk 9)"],
+        rows:[
+          ["Teklif / Ürün","Ne satıyorsun → net göster","2-3"],
+          ["Sosyal Kanıt","Yorum, referans, öncesi-sonrası","2"],
+          ["Eğitici","Otorite kanıtı, sorun çözer","2"],
+          ["Marka Hikayesi","Kim var arkada, neden güvenilir","1"],
+          ["Süreç / Nasıl Çalışır","Beklenti yönetimi","1"]
+        ]
+      },
+      { type:"h", text:"Kullanıcı Adı ve Aranabilirlik" },
+      { type:"p", text:"Kullanıcı adı (username) marka + niş içermeli. Instagram, 2025'ten itibaren profilleri Google'da indeksliyor; kullanıcı adı ve isim alanı SEO'nun kalbi. Örneğin <em>'@ege.mumatolyesi'</em> ile <em>'@egeworks'</em> arasındaki fark: birincisi 'İzmir mum atölyesi' aramasında çıkar, ikincisi hiçbir şey vaat etmez." },
+      { type:"callout", title:"Dönüşüm Testi · 5-Saniye Kuralı", text:"Bir arkadaşınıza profilinize 5 saniye baktırın. Sonra sorun: <strong>Ne satıyorlar? Kime? Nereden başlarım?</strong> Üçüne de net cevap vermezse profil kullanılabilir bir vitrin değildir." },
+      { type:"vaka",
+        title:"Cilt Bakım Butiği · Profil Optimizasyonuyla %210 DM Artışı",
+        baglam:"'Doğal · Sevgiyle üretildi' bio'su olan doğal cilt bakım markası. Trafik geliyor, DM yok, satış yok. Feed 20+ ürün fotoğrafından ibaret.",
+        analiz:"Yeniden yazılan bio: 'Yağlı ciltler için bitkisel serum · 14 günde parlama ✓ · DM'den cilt tanısı al 🌿'. İsim alanı: 'Aurel · Yağlı Cilde Doğal Bakım'. Öne çıkanlar: Cilt Tanısı, Yorumlar, Sipariş, SSS, Öncesi-Sonrası. İlk 9 karede 3 sosyal kanıt eklendi.",
+        sonuc:"6 haftada: profil ziyareti aynı seviye, ancak DM sayısı %210 arttı, link tıklama 3,4 katı, satış konuşmaya dönüşme oranı %8'den %19'a çıktı. Trafik değişmedi — vitrin değişti."
+      },
+      { type:"takeaways", items:[
+        "Profil bir kartvizit değil, bir landing page (satış sayfası)dır.",
+        "Bio için formül: kime + hangi sorun + nasıl sonuç + net CTA.",
+        "Öne çıkan hikayeler dijital menü; her kapak bir satış itirazını çürütür.",
+        "İlk 9 karede en az 2 sosyal kanıt + 2 net teklif kesin olmalı.",
+        "5-saniye testinden geçmeyen profil satmıyor demektir."
+      ]}
+    ]
+  },
+
+  /* 3 */
+  { id:"avatar", shortTitle:"Alıcı Avatarı",
+    title:'Alıcı <em>Avatarı</em> ve Alım Yolculuğu',
+    lead:"Herkese satmaya çalışan kimseye satamaz. Küçük hesapların büyük kazandığı sırrı çok basit: dar, keskin, hassas bir alıcı avatarı. Bir kişi için yazılan mesaj bir milyon kişiye yazılan mesajdan hep daha çok dönüşür.",
+    blocks:[
+      { type:"h", text:"Avatar Neden Herşeyin Başı?" },
+      { type:"p", text:"İçerik tonu, bio metni, DM cevabı, ürün fotoğrafı, fiyatlandırma — hepsi <strong>alıcı avatarına göre</strong> şekillenir. Avatar netleşmediğinde içerik 'jenerik' hâle gelir; jenerik içerik alım tetiklemez. <em>Kime yazdığını bilmeyen, ne yazacağını da bilmez</em>." },
+      { type:"h", text:"İdeal Alıcı Avatarı Kanvası" },
+      { type:"cards", items:[
+        { title:"Demografi", body:"Yaş, cinsiyet, şehir, gelir, meslek. Ama tek başına yetmez." },
+        { title:"Psikografi", body:"Değerler, hayaller, korkular, günlük rutin. Alım kararının %70'i burada." },
+        { title:"Sorun (Pain)", body:"Hayatını zorlaştıran, uykusunu kaçıran spesifik problem." },
+        { title:"Arzu (Desire)", body:"Bu sorun çözülürse hayatının nasıl değişeceğine dair ideal resim." },
+        { title:"İtiraz (Objection)", body:"'Bende işe yaramaz', 'pahalı', 'zamanım yok' — satın almayı erteleten cümleler." },
+        { title:"Bulunduğu Yer", body:"Hangi hesapları takip ediyor, hangi hashtag'lerde geziniyor, ne izliyor." }
+      ]},
+      { type:"callout", title:"İkna Kanunu", text:"İnsanlar özelliklere değil, <strong>sorunlarına çözüm vaat eden hikâyelere</strong> para verir. Ürün özelliği anlatan içerik satmaz; müşterinin kafasındaki sorunu birebir söze döken içerik satar. Bunu yapmak için avatarın konuştuğu dilde konuşmak gerekir." },
+      { type:"h", text:"Sorun Farkındalık Skalası (Awareness Ladder)" },
+      { type:"table",
+        headers:["Aşama","Alıcının Durumu","İçerikte Yaklaşım"],
+        rows:[
+          ["Farkında değil","Sorunun olduğunu bilmiyor","Sorun teşhisi + günlük belirtiler"],
+          ["Sorun farkında","Sorunu biliyor, çözümü değil","Sorunun sonuçlarını + genel çözüm yolları"],
+          ["Çözüm farkında","Çözümü biliyor, seni değil","Yöntemler arası karşılaştırma + otorite"],
+          ["Ürün farkında","Seni tanıyor, alacak mı emin değil","Sosyal kanıt + garanti + itiraz kırma"],
+          ["Alım niyeti","Alacak, hangi paketi seçecek karar veriyor","Karşılaştırma + aciliyet + bonus"]
+        ]
+      },
+      { type:"p", text:"İçerik takvimini bu skala üzerine yerleştirin. Sadece 'ürün farkında' katmanına içerik üretmek — çoğu markanın hatası — dar bir dilimle sınırlı kalır. Farkında olmayanı içeri çeken içerik uzun vadeli kanaldır." },
+      { type:"h", text:"Ağrı Noktası Haritası · 5 Sorun Kuyusu" },
+      { type:"steps", items:[
+        { title:"Yüzey Şikayet", body:"'Kilo veremiyorum'." },
+        { title:"1. Neden", body:"'Sürekli motivasyonum kırılıyor'." },
+        { title:"2. Neden", body:"'Aslında ne yediğimi bilmiyorum'." },
+        { title:"3. Neden", body:"'Doğru plan olsa uygulardım'." },
+        { title:"Duygusal Kök", body:"'Kendime baktığımda güvenim yok, aynada mutsuzum.'" }
+      ]},
+      { type:"p", text:"Satan içerik yüzey şikayete değil, <em>duygusal köke</em> hitap eder. Rakiplerin çoğu 3. seviyeye kadar iner; siz 5. seviyeye inin — orada rekabet azdır, dönüşüm yüksektir." },
+      { type:"h", text:"3 Somut Avatar Örneği" },
+      { type:"cards", items:[
+        { title:"Avatar A · Meşgul Anne", body:"32 yaş, 2 çocuk, ev + ofis. Ağrı: 'kendime zaman yok'. Arzu: '15 dakikada bakım rutini'. İtiraz: 'pahalı'. Bulunduğu yer: minimal hayat, mom-life hesapları." },
+        { title:"Avatar B · Yeni Freelancer", body:"25-30 yaş, dijital işe geçen. Ağrı: 'düzenli müşteri yok'. Arzu: 'aylık 3 sabit müşteri'. İtiraz: 'bende çalışır mı'. Bulunduğu yer: freelance, verimlilik, kişisel gelişim hesapları." },
+        { title:"Avatar C · Küçük İşletme Sahibi", body:"35-45 yaş, atölye/butik. Ağrı: 'Instagram vakit alıyor sonuç yok'. Arzu: 'sistem kurup ölçekle'. İtiraz: 'reklam yaktım'. Bulunduğu yer: girişim, e-ticaret, üretici hesapları." }
+      ]},
+      { type:"callout", title:"Uyarı · Tek Bir Avatar", text:"3 avatar için içerik üretmeye çalışmak kimseye ulaşmamak demek. Başlangıçta <strong>tek bir avatara</strong> odaklanın. Onun sesini, kelimelerini, korkularını içerikte birebir kullanın. 'Bu bana yazılmış' hissi satın alma tetiğinin ta kendisidir." },
+      { type:"vaka",
+        title:"Beslenme Koçu · Dar Avatarla 3 Katı Satış",
+        baglam:"'Sağlıklı yaşam için beslenme' söylemiyle içerik üreten koç. 8 bin takipçi, ayda 4-5 danışan, satış artmıyor. Herkese hitap etmeye çalışıyor: sporcu, anne, öğrenci, ofis çalışanı…",
+        analiz:"Odaklanma: 'Ofiste çalışan, öğle yemekten sonra uykusu gelen, akşam yorgun 30-40 yaş kadın'. Bio, içerik dili, örnek menüler bu tek avatara göre değiştirildi. Reels'ler 'öğleden sonra 15:00 uykusu' üzerine çekildi.",
+        sonuc:"Takipçi 8.000 → 9.100 (%13) — çok küçük bir artış. Ama danışan sayısı ayda 4-5'ten 14'e çıktı (3× büyüme), ortalama paket süresi 1 aydan 3 aya uzadı. <em>Dar avatar; daha az takipçiye çok daha fazla anlam ifade eder</em>."
+      },
+      { type:"takeaways", items:[
+        "Herkese satmaya çalışan kimseye satamaz — önce tek bir avatar seç.",
+        "İçerik demografiye değil, ağrı-arzu-itiraz üçlüsüne göre yazılır.",
+        "Sorun farkındalık skalasında en dip katman en yüksek dönüşüm sağlar.",
+        "'5 Neden' tekniği yüzey şikayetten duygusal köke iner.",
+        "'Bu bana yazılmış' hissi Instagram satışının en güçlü tetiğidir."
+      ]}
+    ]
+  },
+
+  /* 4 */
+  { id:"icerik-sistem", shortTitle:"Satış Odaklı İçerik Sistemi",
+    title:'Satış Odaklı <em>İçerik Sistemi</em>',
+    lead:"Hiçbir içerik 'sadece güzel olduğu için' satmaz. Satan içerik bir sistemin parçasıdır: bir kısmı dikkati toplar, bir kısmı güven kurar, bir kısmı arzu tetikler, bir kısmı doğrudan satar. Bu bölüm sadece 'ne paylaşacağını' değil, 'hangi oranda' paylaşacağını da tanımlar.",
+    blocks:[
+      { type:"h", text:"Satış Değer Merdiveni: 4 İçerik Katmanı" },
+      { type:"cards", items:[
+        { title:"Farkındalık (%30)", body:"Yeni kitleye ulaşan içerik. Trend, hook'lu Reels, viral fikir." },
+        { title:"Güven (%30)", body:"Otorite kanıtı, know-how, arkasındaki insan, davranış içerikleri." },
+        { title:"Arzu (%25)", body:"Sosyal kanıt, öncesi-sonrası, müşteri hikâyeleri." },
+        { title:"Aksiyon (%15)", body:"Doğrudan teklif, kampanya, ürün detayı, aciliyet." }
+      ]},
+      { type:"callout", title:"Klasik Hata", text:"Küçük hesaplar %90 aksiyon içeriği paylaşır — sürekli 'sipariş için DM'. Bu, arzuyu tetikleyecek güven ve arzu katmanları eksik olduğu için etkisiz kalır. <strong>Aksiyon içeriği, ancak güven ve arzu doluysa satışa dönüşür</strong>." },
+      { type:"h", text:"AIDA Modelinin Instagram Uygulaması" },
+      { type:"table",
+        headers:["Aşama","Amaç","Uygun Format"],
+        rows:[
+          ["Attention (Dikkat)","Kaydırmayı durdur","Reels hook, güçlü thumbnail"],
+          ["Interest (İlgi)","İçeriye çek","Carousel eğitici, story dizisi"],
+          ["Desire (Arzu)","'Ben de isterim' yarat","Öncesi-sonrası, müşteri konuşması"],
+          ["Action (Aksiyon)","Somut adım","'DM at', 'linke bas', 'yorum bırak'"]
+        ]
+      },
+      { type:"h", text:"Haftalık İçerik Şablonu · 7 Günde Satış Ritmi" },
+      { type:"steps", items:[
+        { title:"Pazartesi · Otorite", body:"Sektörle ilgili eğitici carousel veya Reels. Kaydettirir." },
+        { title:"Salı · Story Dizisi", body:"Günün arkasındaki insanı gösteren mini vlog. Yakınlık." },
+        { title:"Çarşamba · Sosyal Kanıt", body:"Müşteri yorumu / öncesi-sonrası. Arzu tetikler." },
+        { title:"Perşembe · Reels Hook", body:"Trend + niş; yeni kitleye ulaşma günü." },
+        { title:"Cuma · Teklif Hikâyesi", body:"Ürün / hizmet detayı; net CTA'lı doğrudan satış." },
+        { title:"Cumartesi · SSS Yıkımı", body:"'Ama pahalı değil mi?', 'Bende işe yarar mı?' cevapları." },
+        { title:"Pazar · Duygu / Manifesto", body:"Marka değerleri, kişisel hikâye. Sadakat inşa eder." }
+      ]},
+      { type:"h", text:"Satan Başlık (Hook) Formülleri" },
+      { type:"cards", items:[
+        { title:"Sorun-Çözüm", body:"'Hâlâ mesajlara 3 saat sonra dönüyorsan bu içerik senin için'." },
+        { title:"Rakam", body:"'3 haftada Instagram'dan 12 sipariş almanın 4 kuralı'." },
+        { title:"Kontrast", body:"'Herkes trend ses kullanıyor, biz tam tersini yaptık — sonuç…'." },
+        { title:"Duygu", body:"'Instagram'a girmek eziyet olduğunda okuman gereken 3 cümle'." },
+        { title:"Merak", body:"'DM'lerinden alıcı çıkmıyorsa bakman gereken tek metrik'." },
+        { title:"Otorite", body:"'12 ay boyunca 40+ küçük işletmeye danışmanlık yaptım — kalıp bu'." }
+      ]},
+      { type:"h", text:"Satan CTA Kütüphanesi" },
+      { type:"table",
+        headers:["Niyet","CTA Örnekleri","Kullanım Yeri"],
+        rows:[
+          ["Etkileşim","'Sen hangi tarafta? Yorumlarda bekliyorum'","Reels, carousel son slaytı"],
+          ["Aday Yakalama","'Ücretsiz denetim → DM'den DENETIM yaz'","Post açıklaması, story"],
+          ["Trafik","'Detaylar linkte, 5 dakikada okunur'","Bio linke yönlendiren post"],
+          ["Kaydetme","'Sonra baksın diye kaydet — bir daha bulamayabilirsin'","Eğitici carousel"],
+          ["Satış","'Bu haftaya özel · DM'den SIPARIS yaz'","Kampanya postu, story"]
+        ]
+      },
+      { type:"callout", title:"90/10 Kuralı", text:"Her 10 içerikten en fazla 1'i doğrudan satış olmalı. Kalan 9 içerik güven, otorite ve arzu inşa eder. Bu oranı bozan hesaplar 'sürekli satış yapıyor' algısı yaratır ve <strong>algoritma + kullanıcı iki yönlü ceza verir</strong>." },
+      { type:"h", text:"Reels + Carousel + Story · Görev Dağılımı" },
+      { type:"cards", items:[
+        { title:"Reels · Trafik Getir", body:"Yeni kitleye ulaşır. Görevi 'yabancıyı takipçiye çevirmek'." },
+        { title:"Carousel · Otorite Kur", body:"Derin bilgi, kaydettirir. Görevi 'takipçiyi sıcak adaya çevirmek'." },
+        { title:"Story · Sıcak Adayla Konuş", body:"Günlük ritim, DM tetikler. Görevi 'sıcak adayı müşteriye çevirmek'." }
+      ]},
+      { type:"vaka",
+        title:"Kişisel Marka Danışmanı · 90/10 Kuralıyla 5× Randevu",
+        baglam:"Danışman haftada 5 içerik atıyor, %80'i 'randevu almak için DM' postu. Etkileşim düşük, DM boş.",
+        analiz:"%30 farkındalık (Reels hook), %30 güven (case study carousel), %25 arzu (danışan öncesi-sonrası), %15 satış (net teklif hikâyesi) dağılımına geçildi. Haftada 7 içerik + günlük 3-5 story rutini oturdu.",
+        sonuc:"4 haftada: Reels ortalama izlenme 2,1×, kaydetme 4,3×, DM sayısı 5 katına çıktı. Aynı takipçi tabanı, aynı ürün — sadece <em>içerik dengesi</em> değişti."
+      },
+      { type:"takeaways", items:[
+        "Satış içerik parçası değildir; her katmanın rol aldığı bir sistemdir.",
+        "Değer merdiveni: %30 farkındalık, %30 güven, %25 arzu, %15 aksiyon.",
+        "Direkt satış içeriği ancak güven + arzu doluysa dönüşüm getirir.",
+        "AIDA çerçevesi tek bir Reels'e bile uygulanabilir.",
+        "Reels trafik, carousel otorite, story ilişki — üçü birlikte satar."
+      ]}
+    ]
+  },
+
+  /* 5 */
+  { id:"reels-satis", shortTitle:"Reels ile Alıcı Yakalama",
+    title:'Reels ile <em>Alıcı Yakalama</em>: Hook–Story–Offer',
+    lead:"Reels Instagram'da en ucuz alıcı yakalama kanalıdır. 15-45 saniyelik bir video, doğru kurulduğunda, milyonlarca reklam bütçesinin yerini alır. Ama Reels'te satış 'ürünü göstermekle' olmaz — anlatım mimarisi bilir gibi kurulmalıdır.",
+    blocks:[
+      { type:"h", text:"Neden Reels Satar? · Erişimin Ekonomisi" },
+      { type:"p", text:"Instagram algoritması Reels'i <strong>takipçi olmayan kullanıcılara</strong> gösterir. Bu, ücretsiz reklam kanalı demektir. Ancak Reels'in görevi satmak değildir — <em>doğru adayı yakalamak</em>tır. Yakalanan aday profil ziyaretine, oradan da satış katmanlarına yönlenir." },
+      { type:"callout", title:"Kural", text:"Reels satmaz, <strong>satılacak kişiyi getirir</strong>. O yüzden Reels'te dönüşüm metriği 'satış' değildir; 'profil ziyareti + takip + kaydetme + gönderme' oranıdır. Bu sinyaller satışı ikinci dalgada üretir." },
+      { type:"h", text:"Reels Satış Mimarisi · 3 Perde" },
+      { type:"cards", items:[
+        { title:"Perde 1 · Hook (0-3 sn)", body:"Kaydırmayı durdurur. Anlatım değil, <em>vaad</em>." },
+        { title:"Perde 2 · Story (3-30 sn)", body:"Sorun + kanıt + çözüm bileşimi. Duygu ve otorite ekler." },
+        { title:"Perde 3 · Offer (Son 3-5 sn)", body:"Net CTA. 'Kaydet', 'DM at', 'linke bas' — tek eylem." }
+      ]},
+      { type:"h", text:"7 Kanıtlanmış Hook Şablonu" },
+      { type:"steps", items:[
+        { title:"Yasak Bilgi", body:"'Instagram danışmanlarının söylemediği tek gerçek…'" },
+        { title:"Karşı Görüş", body:"'Trend ses kullanmayı bırak. İşte nedeni…'" },
+        { title:"Rakam-Sonuç", body:"'3 haftada 400 takipçi. Yaptığım tek şey buydu.'" },
+        { title:"Kim İçin Değil", body:"'Bu içerik ayda 100K kazananlara değil, tam senin gibi başlayanlara.'" },
+        { title:"Boş Vurgu", body:"'Reels'ten satış yapmıyorsan tek bir şeyi yanlış yapıyorsun.'" },
+        { title:"Hatanın İtirafı", body:"'2 sene boyunca yaptığım en büyük satış hatası…'" },
+        { title:"Meraklı Soru", body:"'DM'lerine gelen 10 kişiden neden 9'u sipariş vermiyor?'" }
+      ]},
+      { type:"h", text:"Reels Formatları · Alıcıya Göre Ayrım" },
+      { type:"table",
+        headers:["Format","Amaç","Örnek Kullanım"],
+        rows:[
+          ["Talking Head","Otorite + güven","Uzmanlık paylaşımı, karşı görüş"],
+          ["Öncesi-Sonrası","Arzu tetikleme","Cilt bakımı, kilo verme, tasarım"],
+          ["Ürün Demo","Farkındalık + ilgi","Kısa süreli 'nasıl kullanılır'"],
+          ["Süreç Videosu","Güven + sanat","Atölye içi üretim, mutfak"],
+          ["Story-time","Duygu + sadakat","Kurucu hikâyesi, dönüşüm anı"],
+          ["Reaction / Yanıt","Etkileşim","'Bu yoruma cevabım…'"]
+        ]
+      },
+      { type:"h", text:"Satış Odaklı Reels Yazım Şablonu" },
+      { type:"steps", items:[
+        { title:"Cümle 1 (Hook)", body:"'Şu hatayı yapıyorsan Instagram'dan satış çıkmaz.'" },
+        { title:"Cümle 2 (Sorun)", body:"'Herkes gibi sürekli ürün fotoğrafı atıyorsun ama…'" },
+        { title:"Cümle 3 (Sarsıcı Gerçek)", body:"'İnsanlar ürüne değil, ürünün sağladığı sonuca para verir.'" },
+        { title:"Cümle 4 (Kanıt)", body:"'Geçen ay danışmanlık verdiğim bir markada bunu değiştirdik.'" },
+        { title:"Cümle 5 (Sonuç)", body:"'Aynı takipçiyle satış 3 katına çıktı — hiçbir yeni reklam yok.'" },
+        { title:"Cümle 6 (Offer)", body:"'Sistemin tamamını istersen DM'den SATIS yaz — gönderiyorum.'" }
+      ]},
+      { type:"h", text:"Reels KPI Setinden Satış Sinyali Okuma" },
+      { type:"table",
+        headers:["Metrik","Sinyal","Ne Yapmalı"],
+        rows:[
+          ["İzlenme yüksek, kaydetme düşük","Hook güçlü ama içerik zayıf","Story kısmına değer yoğunlaştır"],
+          ["Kaydetme yüksek, DM yok","Otorite var ama CTA yok/zayıf","Son 3 sn'de net eylem çağır"],
+          ["İzleme süresi düşük","Hook zayıf veya baş kısım yavaş","İlk 3 sn'yi yeniden yaz"],
+          ["Yeni takipçi çok, satış yok","Trafik kalitesiz","Avatar netliği bozulmuş"],
+          ["Erişim başına gönderme %1,5+","Viral sinyal","Aynı seriyi çoğalt"]
+        ]
+      },
+      { type:"callout", title:"Ses ve Altyazı", text:"Reels'lerin <strong>%85'i sessiz izlenir</strong>. Altyazı olmayan Reels izleme süresi ortalama %40 düşer. Trend sesler algoritmayı besler ama içerik 'ses açık izlemeye değecek' düzeyde olmalı." },
+      { type:"vaka",
+        title:"El Yapımı Takı Butiği · 3 Reels ile 220 DM",
+        baglam:"Butik haftada 4 Reels atıyor, ortalama izleme 1.500, DM çıkmıyor. Reels'ler sadece ürün fotoğraflarının müzikli hâli.",
+        analiz:"3 Reels 'Hook-Story-Offer' yapısına dönüştürüldü. Hook: 'Alışveriş yapılan hediye vermenin en soğuk yanı…'. Story: küçük atölye + kurucunun sesi + hediye alıcısının reaksiyonu. Offer: 'Kişiye özel yazdırmak istersen DM'den ADIN yaz.'",
+        sonuc:"3 Reels 250K erişim aldı; 220 DM geldi, 34'ü satışa dönüştü. Aynı ürünler — aynı fotoğraflar. Fark: <em>anlatım mimarisi</em>."
+      },
+      { type:"takeaways", items:[
+        "Reels satmaz — satılacak adayı yakalar; satış ikinci dalgada oluşur.",
+        "Her Reels 3 perde: Hook (0-3 sn), Story (3-30 sn), Offer (son 3-5 sn).",
+        "Hook 3 saniyede kaydırmayı durdurmalı; vaad zorunlu, olay yasak.",
+        "Ses açık izleme + altyazı + tamamlanma → algoritmanın viral sinyalleri.",
+        "KPI'ları okumak Reels'i sanattan bilime çevirir."
+      ]}
+    ]
+  },
+
+  /* 6 */
+  { id:"stories-satis", shortTitle:"Hikayelerde Satış Ritmi",
+    title:'Hikayelerde <em>Günlük Satış Ritmi</em>',
+    lead:"Feed müşteri çeker; hikayeler müşteriyi satın alıyor. Instagram satışlarının önemli bir bölümü hikayeler üzerinden gerçekleşir çünkü hikayeler sıcak kitleyle, günlük ritimle, aciliyet + samimiyet kombinasyonuyla konuşur.",
+    blocks:[
+      { type:"h", text:"Hikayelerin Satıştaki Yeri" },
+      { type:"p", text:"Hikayeler zaten sizi <strong>tanıyan</strong> ve büyük ihtimalle sizinle konuşmaya hazır olan kitleyi besler. Feed dışardan trafik getirir; hikayeler o trafiği <em>DM'e, linke, satışa</em> çevirir. Küçük hesaplarda satışın yarısından fazlası hikaye üzerinden gelir — çünkü kararı orada verirler." },
+      { type:"h", text:"Günlük 3-Perde Hikaye Formatı" },
+      { type:"cards", items:[
+        { title:"Perde 1 · Yakınlık (Sabah)", body:"'Bugün böyle başladım' — atölye, kahve, insanı göster. 2-3 hikaye." },
+        { title:"Perde 2 · Değer (Öğle)", body:"1 hızlı ipucu, 1 anket, 1 SSS yıkımı. Etkileşim topla. 3-4 hikaye." },
+        { title:"Perde 3 · Satış (Akşam)", body:"Ürün, sosyal kanıt, teklif, aciliyet, link. 2-3 hikaye." }
+      ]},
+      { type:"callout", title:"Kural", text:"Günde ortalama <strong>7-10 hikaye</strong> — az değil, çok değil. 3 perdeden az günler unutulur; 15+ hikaye 'spam' hissi verir. Ritim kalıcılığın anahtarıdır." },
+      { type:"h", text:"Yumuşak Satış (Soft Sell) Şablonları" },
+      { type:"steps", items:[
+        { title:"Küçük İçgörü + Ürün Bağı", body:"'Sabahları en zor yanı… (ipucu) → aslında X ürünüyle bu iş 2 dakikaya iniyor.'" },
+        { title:"Anket + Öneri", body:"'A mı B mi? → Cevabın X ise sana bu paket birebir uyar.'" },
+        { title:"Perde Arkası + Teşekkür", body:"'Bugünkü siparişleri hazırlıyorum → hâlâ bugüne yetişebilirsin, DM at.'" },
+        { title:"Müşteri Ekranı", body:"'Sabah gelen mesaj → sonuç → sen de aynısını istersen…'" },
+        { title:"Sınırlı Kontenjan", body:"'Bu haftaya sadece 3 danışan alıyorum, 2'si doldu.'" }
+      ]},
+      { type:"h", text:"Sticker Satış Sistemi · Her Sticker Bir Görev" },
+      { type:"table",
+        headers:["Sticker","Satış Rolü","Örnek Kullanım"],
+        rows:[
+          ["Anket","Karar segmentasyonu","'A yağlı mı, B kuru mu?' → sonra farklı DM"],
+          ["Soru Kutusu","Aday yakalama","'Cilt sorununu yaz, cevaplıyorum.'"],
+          ["Quiz","Otorite kurma","'Hangisi trend değil? Cevap 3. hikayede.'"],
+          ["Link Sticker","Trafik + satış","Ürün detayı, formu, ödeme sayfası"],
+          ["Geri Sayım","Aciliyet","'Kampanya bitmesine 12 saat.'"],
+          ["Emoji Kaydır","Duygu ölçme","'Bu ürünü ister miydin? 🤍'"],
+          ["DM Butonu (Mention)","Konuşma başlatıcı","'Sipariş için @ hesabıma yaz.'"]
+        ]
+      },
+      { type:"h", text:"Satış Öncesi Isınma · 7 Günlük Kampanya Şablonu" },
+      { type:"steps", items:[
+        { title:"Gün 1 · Sorun Anlat", body:"Kimin için, hangi sorunu çözüyorsun? Ağrı noktalarını göster." },
+        { title:"Gün 2 · Perde Arkası", body:"Ürünün nasıl doğduğu, kim tarafından üretildiği." },
+        { title:"Gün 3 · Sosyal Kanıt", body:"3-4 müşteri yorumu / öncesi-sonrası ekranı." },
+        { title:"Gün 4 · Karşılaştırma", body:"'Bunu almazsan ne olur / alırsan ne olur' yumuşak kıyas." },
+        { title:"Gün 5 · Teklif Açılışı", body:"Fiyat, paket, dahil olanlar. Aciliyet başlar." },
+        { title:"Gün 6 · İtiraz Kırma", body:"'Ama pahalı', 'zamanım yok', 'işe yarar mı' — tek tek cevap." },
+        { title:"Gün 7 · Son Çağrı", body:"Geri sayım, kalan kontenjan, 'son 3 saat' bildirimi." }
+      ]},
+      { type:"callout", title:"En Güçlü Sinyal · DM'e Yanıt", text:"Story'ye DM ile yanıt gelmesi Instagram algoritmasının <strong>en güçlü sıcak sinyalidir</strong>. Kullanıcı burada 'seçkin dostluk' katmanına girer; algoritma sonraki hikayelerinizi ona her defasında ilk sırada gösterir. Anket ve soru kutusu bu sinyali sistemli üretir." },
+      { type:"h", text:"Öne Çıkan Hikayeler · Satış Vitrini" },
+      { type:"cards", items:[
+        { title:"Bugüne Özel", body:"Kısa süreli kampanyaları buraya sabitle; yeni ziyaretçi burada anlar." },
+        { title:"Ürün Kataloğu", body:"Fiyat aralığı, paket ismi, fayda vurgusu net şekilde." },
+        { title:"Müşteri Diyalogları", body:"Yorum ekran görüntüleri; kronolojik biriktir." },
+        { title:"Nasıl Sipariş", body:"3 adımda süreç. 'DM → seçim → ödeme'." },
+        { title:"SSS", body:"'Kargo', 'iade', 'değişim' — engel kaldıran." }
+      ]},
+      { type:"vaka",
+        title:"Online Butik · Hikayelerle Ortalama Sepette %60 Artış",
+        baglam:"Online butik ayda 60 sipariş, ortalama sepet 320 TL, hikayelerde günde 2-3 ürün fotoğrafı ve fiyat.",
+        analiz:"3-Perde hikaye ritmi kuruldu, sabah yakınlık + öğle anket + akşam teklif. Anketle 'A mı B mi' segmentasyonu; her segment için farklı DM. Öne çıkanlarda 'Bugüne özel', 'Yorumlar', 'Nasıl sipariş' rafı oluşturuldu.",
+        sonuc:"6 haftada sipariş sayısı 60→94 (%57 artış), ortalama sepet 320→515 TL (%60 artış). Toplam gelir 2,4 katına çıktı — takipçi neredeyse hiç değişmedi. Fark: <em>ritim ve sistem</em>."
+      },
+      { type:"takeaways", items:[
+        "Instagram satışlarının önemli kısmı hikayelerden gelir — sıcak kitle burada karar verir.",
+        "Günlük 3-perde format: sabah yakınlık, öğle değer, akşam satış.",
+        "Sticker'lar satış görevi olmadan kullanılmaz — her sticker bir amaca hizmet eder.",
+        "Öne çıkan hikayeler dijital menü ve sürekli açık vitrindir.",
+        "DM ile yanıt, algoritmanın 'seçkin dostluk' sinyalidir — en değerli metrik."
+      ]}
+    ]
+  },
+
+  /* 7 */
+  { id:"dm-satis", shortTitle:"DM Satış Süreci",
+    title:'DM Satış Süreci: <em>Konuşmadan Satışa</em>',
+    lead:"Her açılan DM soğuk bir satış görüşmesidir. Doğru bir DM sürecine sahip hesaplar aynı sayıda mesajla 3-5 kat daha çok satar. DM'de rastgele cevap veren hesap, alıcı bulan hesap değil; aday kaybeden hesaptır.",
+    blocks:[
+      { type:"h", text:"DM'in Değeri · En Yüksek Niyetli Kanal" },
+      { type:"p", text:"Bir kullanıcı DM attığında <strong>en yüksek satın alma niyet sinyalini</strong> vermiş demektir. Reels izlemek 0 puanlık ilgi, kaydetmek 3 puan, DM 10 puandır. DM'in cevaplanma hızı, tonu ve süreci; bu ilginin satışa dönüşüp dönüşmeyeceğini belirler. <em>DM görmezden gelmek, dükkânın kapısını çalıp içeri girmeye çalışan müşteriye ihmal etmektir</em>." },
+      { type:"callout", title:"Kritik Metrik: Yanıt Süresi", text:"Meta datasına göre, DM'e <strong>ilk 5 dakikada</strong> cevap veren işletmelerin satışa dönüşüm oranı, 1 saat sonra cevap verenden yaklaşık <strong>7 kat</strong> fazla. Zaman geçtikçe niyet buharlaşır." },
+      { type:"h", text:"DM Satış Hunisi · 5 Aşama" },
+      { type:"cards", items:[
+        { title:"1. Selamlama", body:"Kişisel, kısa, sıcak. 'Merhaba [İsim], DM'e hoşgeldin.'" },
+        { title:"2. Keşif", body:"'Ne için ulaştın?' değil, 'Şu an hangi sorunla uğraşıyorsun?'" },
+        { title:"3. Diagnoz", body:"Cevaba göre yönlendirme: sorun-çözüm eşleştirmesi." },
+        { title:"4. Teklif", body:"Uygun paket/ürün + net fiyat + garanti." },
+        { title:"5. Kapama", body:"Aciliyet + net eylem. 'Bu haftaya son 2 kontenjan, onaylıyor musun?'" }
+      ]},
+      { type:"h", text:"DM Script Şablonları" },
+      { type:"steps", items:[
+        { title:"Selamlama Şablonu", body:"'Merhaba [İsim] 🌿 DM'e hoşgeldin. Kısaca ne için yazdığını yazar mısın? Sana en doğru şekilde yardımcı olayım.'" },
+        { title:"Keşif Sorusu", body:"'Şu an cildinle ilgili en çok neyi çözmek istiyorsun? Bu bilgi olmadan yanlış ürün önermek istemem.'" },
+        { title:"Diagnoz", body:"'Anladım. Anlattıklarına en uygun olan X paketimiz — çünkü…'" },
+        { title:"Teklif", body:"'X paketi 890 TL, kargo dahil, 14 gün iade garantili. Yeni müşterilere özel bu hafta ekstra hediye içeriyor.'" },
+        { title:"Kapama", body:"'Onaylarsan hemen hazırlayıp bugün kargoya veriyorum, cuma günü elinde olur. Devam edelim mi?'" }
+      ]},
+      { type:"h", text:"Yaygın DM İtirazları ve Kırma Cümleleri" },
+      { type:"table",
+        headers:["İtiraz","Alt Metin","Kırma Cümlesi"],
+        rows:[
+          ["'Fiyatı yüksek geldi'","Değer görmüyor","'Anlıyorum. Şunu sorayım — bu sorunu çözmek için son 6 ayda toplam ne kadar harcadın?'"],
+          ["'Düşüneceğim'","Karar veremiyor","'Tabii, hangisi kafanı karıştırıyor — süre mi, içerik mi, fiyat mı? Onu netleştirelim.'"],
+          ["'Şimdi param yok'","Öncelik değil","'Anladım. Ne zaman uygun olur? Sana o zaman için hatırlatma bırakayım.'"],
+          ["'Bende işe yarar mı?'","Güven eksik","'Seninle benzer durumda olan Ayşe'nin sonucunu göndereyim, 2 dk okursun.'"],
+          ["'İndirim var mı?'","Fiyat testi","'Şu an aktif kampanya bu — 30 gün içinde geri dönerim demezsen bu fiyatı bugüne kadar tutabilirim.'"]
+        ]
+      },
+      { type:"h", text:"DM Yanıt Süresi Optimizasyonu" },
+      { type:"cards", items:[
+        { title:"Hızlı Yanıtlar (Quick Replies)", body:"Instagram'ın 'Kaydedilmiş Yanıtlar' özelliği; 20-30 sık kullanılan script'i kısayola bağlayın." },
+        { title:"Otomatik Karşılama", body:"İşletme aracı ile 'Merhaba, en geç 1 saat içinde dönüyoruz' — beklenti yönetimi." },
+        { title:"Anahtar Kelime Tetikleyici", body:"'SIPARIS', 'FIYAT', 'RANDEVU' → otomatik akış. Meta Business Suite üzerinden kurulur." },
+        { title:"Etiketleme Sistemi", body:"'Yeni', 'Sıcak Aday', 'Müşteri', 'Takip Gerekli' — DM'leri sınıflandır." },
+        { title:"Sanal Asistan", body:"Günde 30+ DM alıyorsan tam zamanlı biriyle DM operasyonu ayrılır." }
+      ]},
+      { type:"callout", title:"Kural · Ses Değil, Metin", text:"DM'de sesli mesaj gönderme. Alıcının çoğunlukla açamayacağı ortamda olduğunu unutma. Kısa, net, madde madde metin cevap → daha yüksek dönüşüm. Görsel/video destek olarak eklenebilir." },
+      { type:"h", text:"Takip (Follow-up) Sistemi" },
+      { type:"steps", items:[
+        { title:"24 Saat · İlk Hatırlatma", body:"'Merhaba, dün konuştuğumuz X paketle ilgili düşünecek miydin? Bir sorun kaldıysa yazabilirsin.'" },
+        { title:"3 Gün · Değer Odaklı", body:"İlgili bir ipucu, mini rehber gönder. Satış değil, hatırlatma." },
+        { title:"7 Gün · Yumuşak Kapama", body:"'Şu an uygun değil dersen ısrar etmiyorum, gelecekte hatırlatayım mı?'" },
+        { title:"14 Gün · Aciliyet", body:"Kampanya son çağrı; nazikçe kapatma." },
+        { title:"30 Gün · Yeniden Değer", body:"Yeni içerik / paket / vaka gönder. Konuşmayı ısıt." }
+      ]},
+      { type:"vaka",
+        title:"Danışmanlık Hizmeti · 3 Katına Kapama Oranı",
+        baglam:"Danışman ayda 40 DM alıyor, 3-4 tanesi satışa dönüyor (%10 kapama). Cevaplar rastgele, bazen 6-8 saat gecikmeli.",
+        analiz:"5-aşama DM hunisi + 20+ hızlı yanıt şablonu + saat 9:00-12:00 ve 20:00-22:00 arası aktif DM slotları belirlendi. İtiraz kırma cümleleri ezberlendi. 7-14-30 gün takip akışı kuruldu.",
+        sonuc:"3 ayda DM sayısı 40→52 (küçük artış), ancak kapama oranı %10→%31 çıktı. Aynı trafik — <em>3 katına yakın satış</em>. Fark: sistem + hız + script."
+      },
+      { type:"takeaways", items:[
+        "DM Instagram'ın en yüksek niyetli kanalıdır — ihmal edilirse aday buharlaşır.",
+        "İlk 5 dakika cevap veren, 1 saat sonra cevap verenden ~7 kat daha çok satar.",
+        "5-aşama DM hunisi: Selam → Keşif → Diagnoz → Teklif → Kapama.",
+        "Her yaygın itirazın hazır kırma cümlesi olmalı — script kütüphanesi altındır.",
+        "Follow-up sistemi olmadan gelen aday %60'a varan oranda kaybedilir."
+      ]}
+    ]
+  },
+
+  /* 8 */
+  { id:"bio-link", shortTitle:"Bio Link ve Satış Hunisi",
+    title:'Bio Link ve <em>Satış Hunisi</em>',
+    lead:"Instagram bio'nuzdaki o tek link, tüm Instagram trafiğinin süzülüp geldiği borudur. Yanlış kurulduğunda milyonlarca izleme boşa akar; doğru kurulduğunda küçük bir trafik bile büyük dönüşüm üretir.",
+    blocks:[
+      { type:"h", text:"Bio Link · Instagram'ın Tek Kapısı" },
+      { type:"p", text:"Instagram organik içeriklerinden çıkışın <strong>tek yolu bio linkidir</strong> (Stories link sticker'ı hariç). Bu link ürün sayfası, WhatsApp, form, ödeme sayfası gibi tek bir hedefe götürmeli. Genel kurala göre <em>seçenek çokluğu dönüşümü öldürür</em> — Linktree'de 12 link listelemek 12 linkin de tıklanmaması demektir." },
+      { type:"h", text:"Link Stratejisi · 3 Model" },
+      { type:"cards", items:[
+        { title:"Tek Amaç Link", body:"Doğrudan WhatsApp / form / ödeme sayfası. En yüksek dönüşüm." },
+        { title:"Landing Menü", body:"Linktree, Beacons, Milkshake — 3-5 net seçenek. Ürün çeşitliliği çok olan için." },
+        { title:"Kişisel Mini Site", body:"Kendi domain'in üzerinde marka deneyimi. SEO + retargeting piksel + mail listesi." }
+      ]},
+      { type:"callout", title:"Kural · Az Seçenek = Çok Tıklama", text:"Bio link sayfanda 3'ten fazla seçenek varsa büyük olasılıkla hiçbiri tıklanmaz. Karar yorgunluğu (decision fatigue) mobilde 3 kat daha güçlü çalışır. <strong>Az seçenek + net vaad + tek eylem</strong>." },
+      { type:"h", text:"Satış Hunisi Anatomisi" },
+      { type:"table",
+        headers:["Aşama","Amaç","Ölçüm"],
+        rows:[
+          ["Trafik","Instagram → bio link","Link tıklama oranı (CTR)"],
+          ["Aday Yakalama","İsim + e-posta / WhatsApp","Kayıt oranı"],
+          ["Isınma","Değer içeriği + hikaye","Açılma / cevaplama"],
+          ["Teklif","Ürün/hizmet sunumu","Yanıt / satın alma"],
+          ["Kapama","Ödeme / randevu","Dönüşüm oranı"],
+          ["Sadakat","Tekrar satın alma","LTV artışı"]
+        ]
+      },
+      { type:"h", text:"Yüksek Dönüşen Landing Öğeleri" },
+      { type:"steps", items:[
+        { title:"Başlık", body:"Ürün adı değil, sağlanacak sonuç. 'Yağlı Ciltler İçin 14 Günde Parlamayı Bitir'." },
+        { title:"Alt Başlık", body:"Kimin için + neden şimdi. Sosyal kanıt rakamı ideal." },
+        { title:"Görsel", body:"Öncesi-sonrası, kullanım anı veya net ürün fotoğrafı." },
+        { title:"Değer Listesi", body:"3-5 madde. Özellik değil, sonuç." },
+        { title:"Sosyal Kanıt", body:"En az 3 yorum + varsa medya logoları." },
+        { title:"Risk Kaldırma", body:"'14 gün iade', 'sonuç garantisi', 'iade politikası'." },
+        { title:"Tek Bir CTA", body:"'Sepete Ekle' / 'DM ile başla' / 'Formu doldur'." }
+      ]},
+      { type:"h", text:"Lead Magnet · Sıcak Aday Yakalama" },
+      { type:"p", text:"Doğrudan satış her zaman en hızlı dönüşmez. Bir <strong>ücretsiz değer</strong> (rehber, kontrol listesi, mini kurs, kupon) karşılığında e-posta veya WhatsApp numarası almak, ısınmaya vakit tanır. Küçük bir liste bile <em>Instagram'a kıyasla 8-10 kat daha kararlı dönüşüm</em> verir çünkü kanal size ait." },
+      { type:"cards", items:[
+        { title:"E-Kitap / Rehber", body:"'Instagram Satış Denetim Rehberi · 15 sayfa'" },
+        { title:"Kontrol Listesi", body:"'Bio Optimizasyon Checklist' — 5 dk uygulanır" },
+        { title:"Mini Kurs", body:"'3 günlük ücretsiz e-mail serisi'" },
+        { title:"Ücretsiz Denetim", body:"'DM'den DENETIM yaz — profilini yorumlayayım'" },
+        { title:"Kupon / Örnek", body:"'İlk siparişe %10' veya 'ücretsiz numune'" }
+      ]},
+      { type:"h", text:"Bio Link Araçları Karşılaştırması" },
+      { type:"table",
+        headers:["Araç","Güçlü Yön","Ne Zaman Uygun"],
+        rows:[
+          ["Doğrudan URL","Sıfır sürtünme","Tek ürün / tek hizmet"],
+          ["Linktree","Hızlı, ücretsiz","Çoklu link ama sade"],
+          ["Beacons","Analitik + satış","İçerik üreticiler"],
+          ["Stan Store","Dijital ürün satışı","Kurs / e-kitap"],
+          ["Shopify / Woo","Katalog + ödeme","E-ticaret markaları"],
+          ["Kendi Landing","Piksel + SEO + branding","Reklam çalışan markalar"]
+        ]
+      },
+      { type:"callout", title:"Piksel Kurulumu · Ücretsiz Retargeting", text:"Bio linkinden trafik alan bir landing sayfaya <strong>Meta Piksel</strong> kur. Linke tıklayanların listesi otomatik oluşur ve Instagram/Facebook reklamında bu kitleye özel gösterim yapabilirsin. Küçük bütçeyle en yüksek ROI'yi <em>retargeting</em> verir." },
+      { type:"h", text:"UTM ve Ölçüm" },
+      { type:"p", text:"Instagram trafiğinizi diğer trafiklerden ayırt edebilmek için her bio linkine UTM etiketi ekleyin: <em>?utm_source=instagram&utm_medium=bio&utm_campaign=ekim2026</em>. Google Analytics ile bakınca 'satışın yüzde kaçı Instagram'dan geldi' netleşir. Ölçemediğinizi iyileştiremezsiniz." },
+      { type:"vaka",
+        title:"Dijital Ürün Satıcısı · Bio Link Dönüşümü 3 Katına",
+        baglam:"12 linkli bir Linktree, ayda 400 tıklama, sadece 6 satış (%1,5 dönüşüm). Linkler karmaşık: 'blog', 'youtube', 'ürünler', 'kurs', 'ücretsiz', 'iletişim'…",
+        analiz:"Linktree kaldırıldı, tek amaçlı landing sayfası kuruldu: 'Instagram Satış Denetim Rehberi · Ücretsiz'. Rehber karşılığında e-mail alındı; sonra 5 günlük değer serisi + 6. gün kurs teklifi.",
+        sonuc:"1 ayda 380 tıklama (aynı seviyede) → 148 e-mail (kayıt %39) → 21 satış (%5,5 tıklama dönüşümü, 3,6× artış). Aynı trafik, farklı huni."
+      },
+      { type:"takeaways", items:[
+        "Bio link, Instagram trafiğinin çıkış kapısıdır — az seçenek + net vaad kuralı.",
+        "Doğrudan satış yerine önce lead magnet ile sıcak aday listesi kur.",
+        "Yüksek dönüşen landing = başlık + sonuç + sosyal kanıt + risk kaldırma + tek CTA.",
+        "Meta Piksel kurulmadan yapılan Instagram reklamı yarı gücündedir.",
+        "UTM ile ölçmediğin trafik, iyileştiremediğin trafiktir."
+      ]}
+    ]
+  },
+
+  /* 9 */
+  { id:"sosyal-kanit", shortTitle:"Sosyal Kanıt ve Güven",
+    title:'Sosyal Kanıt ve <em>Güven Katmanları</em>',
+    lead:"İnsanlar aynı ürünü, tanımadıkları birinden değil, güvendikleri birinin tavsiyesiyle alır. Instagram satışının %60'ı sosyal kanıtın gücüyle çalışır — sosyal kanıt yoksa fiyat sürekli sorgulanır, güven asla kurulmaz.",
+    blocks:[
+      { type:"h", text:"Güvenin Ticari Değeri" },
+      { type:"p", text:"Instagram'da bir yabancı size <strong>7 farklı temas noktasında güven testi</strong> uygular: profil fotoğrafı, bio, öne çıkan hikayeler, ilk 9 kare, yorumlar, DM cevap tonu, ödeme deneyimi. Bu 7 temasın herhangi birinde tökezleme = satışın kaybı. Güven inşası ürünü satın alınabilir hâle getirmenin görünmez motorudur." },
+      { type:"callout", title:"Kritik Rakam", text:"BrightLocal 2025: Alıcıların <strong>%84'ü</strong>, tanıdıklarının tavsiyesi kadar dijital yorumlara güveniyor. Ortalama <strong>7 yorum</strong> okuduktan sonra satın alma kararı veriyorlar. <em>7'den az yorumu olan sayfa 'yeterince güvenli' değil demektir</em>." },
+      { type:"h", text:"7 Sosyal Kanıt Türü" },
+      { type:"cards", items:[
+        { title:"Müşteri Yorumu (Metin)", body:"WhatsApp/DM ekran görüntüsü, isim rozetle veya kısaltılarak paylaşılır." },
+        { title:"UGC · Kullanıcı İçeriği", body:"Müşterinin çektiği fotoğraf / Reels. Repost ile hem güven hem içerik." },
+        { title:"Video Testimonial", body:"30-60 sn müşteri konuşması. En yüksek dönüşümlü tür." },
+        { title:"Öncesi-Sonrası", body:"Somut değişimi görselleştirir. Cilt, kilo, tasarım, sonuç..." },
+        { title:"Sayı / Rakam", body:"'840+ mutlu müşteri', '2 yılda 12K sipariş' — otorite mühürü." },
+        { title:"Medya / Otorite", body:"Blog, dergi, podcast, uzman görüşü — 3. taraf onayı." },
+        { title:"Sertifika / Etiket", body:"Yasal, resmi, teknik onay göstergeleri." }
+      ]},
+      { type:"h", text:"UGC Toplama Sistemi · Otomatik Kanıt Fabrikası" },
+      { type:"steps", items:[
+        { title:"Ürünle Birlikte Bir Not", body:"Kargoya küçük bir kart: 'Kullanırken paylaşırsan bize etiketle 🌿 → ilk 10 kişiye hediye'." },
+        { title:"Etiket / Hashtag Belirle", body:"Marka özel hashtag: #AurelBenimle. Sürekli izlenebilir." },
+        { title:"7-14 Gün İçinde Hatırlatma", body:"Otomatik e-mail veya WhatsApp: 'Sonuçları nasıl?'" },
+        { title:"Reposts + Story Highlight", body:"Her paylaşımı öne çıkarılanlar rafına ekle." },
+        { title:"Yıllık Hediye", body:"En aktif 10 müşteriye yıl sonunda hediye — sadakat + içerik döngüsü." }
+      ]},
+      { type:"h", text:"Yorum İsteme Sanatı · Doğru An + Doğru Soru" },
+      { type:"p", text:"Yorum isterken en büyük hata: 'Yorum yazar mısın?' Bu boş bir istek. Yerine <strong>rehberli sorular</strong> sorun: 'Ürünü kullanmadan önce en çok neyle uğraşıyordun? Şu an ne değişti?' Bu iki soruya cevap otomatik olarak <em>satılabilir yorumu</em> oluşturur." },
+      { type:"cards", items:[
+        { title:"Öncesi", body:"'Bu ürünü almadan önce nasıl bir sorun yaşıyordun?'" },
+        { title:"Karar Anı", body:"'Neden bizi seçtin? Alternatif neydi?'" },
+        { title:"Sonrası", body:"'İlk fark ettiğin değişiklik neydi?'" },
+        { title:"Öneri", body:"'Kime tavsiye ederdin ve neden?'" }
+      ]},
+      { type:"h", text:"Sosyal Kanıt Yerleşimi · Nerede, Ne Kadar?" },
+      { type:"table",
+        headers:["Yer","Kanıt Türü","Etki"],
+        rows:[
+          ["Bio","Rakam / rozet","İlk 5 sn güven mühürü"],
+          ["Öne Çıkanlar","Yorumlar + video","Kalıcı dijital menü"],
+          ["Feed İlk 9","2 sosyal kanıt karesi","Vitrin güveni"],
+          ["Reels","UGC / öncesi-sonrası","Yeni kitleye kanıt"],
+          ["Story · Akşam","Günün yorum ekranı","Aday sıcaklaştırma"],
+          ["DM Kapamada","Benzer müşteri sonucu","İtiraz kırma"],
+          ["Landing","Yorum + medya","Satın alma kararı"]
+        ]
+      },
+      { type:"h", text:"Güvenin Diğer Katmanları" },
+      { type:"cards", items:[
+        { title:"Şeffaflık", body:"'Nasıl çalışıyoruz', 'Nasıl üretiliyoruz', 'Nasıl fiyatlandırıyoruz'." },
+        { title:"Garanti", body:"'14 gün koşulsuz iade', 'Sonuç yoksa para iadesi' — riski üstlen." },
+        { title:"Cevap Hızı", body:"DM'e 1 saatte cevap = güven. 24 saat sonra = kayıp." },
+        { title:"Süreklilik", body:"Aynı kalitede, aynı ritimde içerik. Kesintiler güveni erozyona uğratır." },
+        { title:"Ekip Yüzü", body:"Kim, nerede, neden yapıyor? Arkasında insan olması güveni büyütür." },
+        { title:"Yerel Onay", body:"Şehir, mahalle, adres, telefon → dijital 'gerçeklik'." }
+      ]},
+      { type:"callout", title:"Riskin Ters Çevirilmesi", text:"'Ya işe yaramazsa?' — Instagram alıcısının kafasındaki en yaygın cümle. <strong>Riski müşteriden alıp kendinize alan</strong> garanti cümlesi (para iade, ücretsiz tekrar) dönüşümü ortalama <em>%25-40 arasında</em> artırır. Risk, satın alma kararının anahtar frenidir." },
+      { type:"vaka",
+        title:"Kişisel Bakım Markası · Sosyal Kanıtla %78 Dönüşüm Artışı",
+        baglam:"Ürün 6 aydır satışta, tekrar müşteri %8, dönüşüm oranı düşük. Feed'de sadece 2 yorum ekran görüntüsü var. UGC yok, video yorum yok.",
+        analiz:"UGC toplama sistemi kuruldu: kargoya not + hediye vaadi + otomatik 10. gün mesajı. 30 günde 46 UGC paylaşımı toplandı. Feed'e her 3 postta 1 sosyal kanıt karesi girdi. 'Öncesi/Sonrası' öne çıkan hikayesi açıldı. 30 gün iade garantisi eklendi.",
+        sonuc:"3 ayda: dönüşüm oranı %1,4'ten %2,5'e (%78 artış), tekrar müşteri %8'den %17'ye, ortalama sepet %22 yükseldi. Aynı ürün, aynı fiyat, aynı hesap — sadece kanıt katmanı ve garanti."
+      },
+      { type:"takeaways", items:[
+        "Alıcıların %84'ü dijital yorumlara tanıdık tavsiyesi kadar güveniyor.",
+        "En az 7 farklı sosyal kanıt türü var — hepsini kullanan hesap 'güvenli' okunur.",
+        "UGC sistemi olmayan marka, kanıt üretmek için sürekli para harcar.",
+        "Yorum isteği rehberli olmalı: öncesi, karar anı, sonrası, öneri.",
+        "Riskin ters çevrilmesi (garanti) dönüşümde ~%25-40 artış sağlar."
+      ]}
+    ]
+  },
+
+  /* 10 */
+  { id:"olcekleme", shortTitle:"Ölçekleme ve LTV",
+    title:'Ölçekleme: <em>Retargeting, LTV, Sadakat</em>',
+    lead:"Yeni müşteri edinmek pahalıdır. Mevcut müşteriye tekrar satmak 5-8 kat ucuzdur. Küçük hesapların büyümesinin sırrı 'daha fazla takipçi' değil; 'aynı müşteriyi 2., 3., 4. kez getirmenin sistemi'dir. Bu bölüm hesabınızı ölçek makinesine çevirir.",
+    blocks:[
+      { type:"h", text:"Ölçekleme = Aynı Müşteri × Sıklık × Sepet" },
+      { type:"p", text:"Gelirin gerçek çıkışı yeni müşteri değildir. <strong>Müşteri Yaşam Boyu Değeri (LTV)</strong> = ortalama sepet × satın alma sıklığı × ilişki süresi. Her boyutu %20 iyileştirmek geliri ~%70 büyütür. Bu, 'daha çok takipçi' hedefine 3 kat daha güçlü bir alternatiftir." },
+      { type:"callout", title:"Formül", text:"<strong>LTV = Ortalama Sepet × Aylık Sipariş Sıklığı × Ortalama İlişki Süresi (ay).</strong> 250 TL × 1 sipariş × 3 ay = 750 TL LTV. Aynı müşteriyi 6 aya uzatmak LTV'yi 1.500 TL yapar. Bu, sıfır yeni müşteri ile 2 katı gelir demektir." },
+      { type:"h", text:"Retargeting · Kaybettiklerini Geri Kazan" },
+      { type:"cards", items:[
+        { title:"Sepet Terk Edenler", body:"Ödeme sayfasına gelen ama tamamlamayan → 1 saat içinde hatırlatma DM/mail." },
+        { title:"Ziyaret Edenler", body:"Landing'e gelmiş ama kaydolmayanlar → Meta Piksel ile reklam." },
+        { title:"DM Konuşmuş", body:"DM'e cevap almış ama satın almamış → 3-7-14 günde nazik takip." },
+        { title:"Eski Müşteri", body:"90+ gündür sipariş yok → 'seni özledik' kampanyası." },
+        { title:"İlgili İçerik Gören", body:"Belirli bir Reels'i tamamlayan → benzer içerikle beslenir." }
+      ]},
+      { type:"h", text:"İkinci Satın Alma Sistemi" },
+      { type:"steps", items:[
+        { title:"1. Sipariş Sonrası (Gün 1)", body:"Teşekkür + kullanım rehberi + beklenti kur. 'Ne zaman ne bekleyeceksin.'" },
+        { title:"Gün 7 · Değer Katma", body:"Ürünle ilgili ipucu, kullanım videosu, ekstra fayda." },
+        { title:"Gün 14 · Sonuç Kontrolü", body:"'Nasıl gidiyor?' sorusu — satış değil, ilgi." },
+        { title:"Gün 21 · UGC Talebi", body:"Sonuç paylaşımı iste; hediye vaadi ekle." },
+        { title:"Gün 30 · İkinci Teklif", body:"Tamamlayıcı ürün + eski müşteri fiyatı + kolay sipariş." },
+        { title:"Gün 60 · Ritim", body:"Aylık sadık üye yumuşak teklifi." }
+      ]},
+      { type:"h", text:"Sadakat Programı Modelleri" },
+      { type:"table",
+        headers:["Model","Nasıl Çalışır","Kimi İçin"],
+        rows:[
+          ["Puan Sistemi","Her TL bir puan, puanlar hediyeye dönüşür","E-ticaret, tekrar satın alma yüksek"],
+          ["Kademe (Tier)","Bronz-Gümüş-Altın; kademe fayda artar","Kişisel bakım, moda, gıda"],
+          ["Abonelik","Aylık kutu / hizmet","Sarf malzeme, danışmanlık"],
+          ["Gizli Grup","VIP WhatsApp / Broadcast Kanal","Kişisel marka, koçluk"],
+          ["Referans","Getir-kazan","Hizmet, dijital ürün"]
+        ]
+      },
+      { type:"h", text:"Broadcast Kanal · Instagram'ın Gizli Silahı" },
+      { type:"p", text:"Instagram Broadcast Kanal (Yayın Kanalı) bir <strong>WhatsApp grubu</strong> gibi çalışır ama sadece siz konuşursunuz. Yalnızca 'katıl' butonuna basanlar üyeniz olur; her mesajınız <em>bildirim olarak</em> yerine düşer. Reels/feed erişimi %5 iken Broadcast erişimi %60+ seviyesindedir. Sadık kitle burada toplanır — özel teklif, önizleme, gizli lansman için altındır." },
+      { type:"callout", title:"Kural · Sık Kullanma, Değerli Kullan", text:"Broadcast'i haftada 2-3 kez, her mesajı 'değerli' olacak şekilde kullan. Aksi hâlde <strong>abone bırakma</strong> hızla artar. Kural: her 3 değer, 1 teklif. Bu, mailden çok daha yüksek dönüşen bir kanaldır ama saygıyla kullanılmalı." },
+      { type:"h", text:"Reklam Ölçekleme · Organik Trafiği Katla" },
+      { type:"cards", items:[
+        { title:"Yüksek Etkileşimli Postu 'Boost' Etme", body:"Zaten organik olarak iyi çalışan post = düşük CPC'li reklam." },
+        { title:"UGC Reklamı", body:"Müşteri videosu reklamda organik hisseder, tıklamayı katlar." },
+        { title:"Retargeting Reklamı", body:"Sitene gelmiş, satın almamış kitle → en ucuz dönüşüm." },
+        { title:"Lookalike %1", body:"En iyi 100 müşterinin benzerleri → yeni müşteri için altın." },
+        { title:"Story Sequence", body:"3-4 hikaye zincirinde bir kısa hikâye + net CTA." }
+      ]},
+      { type:"h", text:"Otomasyon · Sürdürülebilir Ritim" },
+      { type:"steps", items:[
+        { title:"İçerik Toplu Üretim", body:"Ayda 1 gün 12 içerik üret; planlama aracıyla otomatik yayına al." },
+        { title:"DM Otomatik Karşılama", body:"'FIYAT', 'SIPARIS' anahtar kelimeleriyle otomatik ilk cevap." },
+        { title:"E-mail / WhatsApp Serisi", body:"Yeni aboneye 5-7 mesajlık otomatik ısınma." },
+        { title:"Sadık Segment Otomasyonu", body:"30/60/90 gündür alışveriş yapmayana özel teklif." },
+        { title:"UGC Toplama Otomasyonu", body:"Sipariş sonrası otomatik 'paylaş → hediye' mesajı." }
+      ]},
+      { type:"h", text:"Sürdürülebilir Ölçekleme · KPI Panosu" },
+      { type:"table",
+        headers:["Metrik","Ne Ölçer","Hedef"],
+        rows:[
+          ["Yeni Müşteri Sayısı","Ayda kaç kişi ilk kez alışveriş yaptı","Aylık büyüme"],
+          ["Tekrar Satın Alma Oranı","İkinci siparişe geçen müşteri %","%30+"],
+          ["LTV / CAC","Kazanılan/harcanan oranı","3× altında değil"],
+          ["Broadcast Aktif Üye","Kaç kişi kanalda","Sürekli artan"],
+          ["UGC Sayısı / Ay","Ay içi paylaşılan müşteri içeriği","10+"],
+          ["Ortalama Sepet","Sipariş başına gelir","Aylık büyüme"]
+        ]
+      },
+      { type:"vaka",
+        title:"Butik Kozmetik Markası · LTV 3 Katına Çıkarma",
+        baglam:"Marka ayda 120 sipariş alıyor, ortalama sepet 480 TL, tekrar satın alma %11 (LTV ~530 TL). Reklama harcanan 25.000 TL sadece yeni müşteri kazanmak için.",
+        analiz:"İkinci satın alma otomasyonu kuruldu: gün 1 rehber, 7 ipucu, 14 sonuç kontrolü, 21 UGC talebi, 30 tamamlayıcı ürün + eski müşteri fiyatı. Broadcast Kanal açıldı, VIP fiyat + önizleme yayınlandı. Sepet terk edenlere 1 saatlik hatırlatma otomasyonu.",
+        sonuc:"6 ayda: yeni müşteri sayısı sabit (aylık 120), ancak tekrar satın alma %11 → %34, ortalama sepet 480 → 610 TL, LTV 530 → 1.590 TL (3× artış). Aynı reklam bütçesiyle toplam gelir 2,5 kat."
+      },
+      { type:"callout", title:"Eğitim Özeti · Sistemin Sonu", text:"Bu 9 bölümde sadece bir Instagram büyüme rehberi öğrenmedin — <strong>Takipçiyi Müşteriye Çeviren Satış Sistemi</strong>'nin tamamını öğrendin. Zihniyet → Profil → Avatar → İçerik → Reels → Story → DM → Bio Link → Sosyal Kanıt → Ölçekleme. Her katman kendinden önceki ve sonrakiyle konuşur. Sistem çalıştığında Instagram artık şans işi değil, ölçülebilir bir gelir kanalı olur." },
+      { type:"takeaways", items:[
+        "LTV = Ortalama Sepet × Sıklık × Süre. Üçüne birden çalış.",
+        "Yeni müşteri, mevcut müşteriden 5-8 kat pahalıdır — retargeting bunun ilacıdır.",
+        "İkinci satın alma otomasyonu, satışın en az bilinen en kârlı silahıdır.",
+        "Broadcast Kanal Instagram'ın en yüksek erişimli bildirim kanalıdır.",
+        "Ölçek 'daha çok içerik' değil, 'daha akıllı sistem'dir.",
+        "Doğru sistemle Instagram artık gelir kanalıdır, gösteri sahnesi değil."
+      ]}
+    ]
+  }
+];
+
+/* ============ Render ============ */
+const esc = (s) => String(s).replace(/[&<>]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;"}[c]));
+
+function renderBlock(b) {
+  if (b.type === "h") return `<h3 class="ega-h3"><span class="ega-h3-bar"></span>${esc(b.text)}</h3>`;
+  if (b.type === "p") return `<p class="ega-p">${b.text}</p>`;
+  if (b.type === "callout") return `
+    <div class="ega-callout">
+      ${b.title ? `<div class="ega-callout-title">${esc(b.title)}</div>` : ""}
+      <div class="ega-callout-body">${b.text}</div>
+    </div>`;
+  if (b.type === "stats") return `
+    <div class="ega-stats">
+      ${b.items.map(it => `
+        <div class="ega-stat">
+          <div class="ega-stat-value">${esc(it.value)}</div>
+          <div class="ega-stat-label">${esc(it.label)}</div>
+        </div>`).join("")}
+    </div>`;
+  if (b.type === "cards") return `
+    <div class="ega-cards">
+      ${b.items.map((c, i) => `
+        <div class="ega-card">
+          <div class="ega-card-head">
+            <span class="ega-card-num">${String(i+1).padStart(2,"0")}</span>
+            <span class="ega-card-title">${esc(c.title)}</span>
+          </div>
+          <div class="ega-card-body">${esc(c.body)}</div>
+        </div>`).join("")}
+    </div>`;
+  if (b.type === "steps") return `
+    <div class="ega-steps">
+      ${b.items.map((s, i) => `
+        <div class="ega-step">
+          <div class="ega-step-num">${String(i+1).padStart(2,"0")}</div>
+          <div>
+            <div class="ega-step-title">${esc(s.title)}</div>
+            <div class="ega-step-body">${esc(s.body)}</div>
+          </div>
+        </div>`).join("")}
+    </div>`;
+  if (b.type === "table") {
+    const cols = b.headers.length;
+    const style = `grid-template-columns: repeat(${cols}, minmax(0,1fr));`;
+    return `
+    <div class="ega-table">
+      <div class="ega-table-row ega-table-head" style="${style}">
+        ${b.headers.map(h => `<div>${esc(h)}</div>`).join("")}
+      </div>
+      ${b.rows.map(row => `
+        <div class="ega-table-row" style="${style}">
+          ${row.map(c => `<div>${esc(c)}</div>`).join("")}
+        </div>`).join("")}
+    </div>`;
+  }
+  if (b.type === "proscons") return `
+    <div class="ega-prosncons">
+      <div class="ega-pc">
+        <div class="ega-pc-title">Avantajlar</div>
+        <ul>${b.pros.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+      </div>
+      <div class="ega-pc con">
+        <div class="ega-pc-title">Riskler</div>
+        <ul>${b.cons.map(p => `<li>${esc(p)}</li>`).join("")}</ul>
+      </div>
+    </div>`;
+  if (b.type === "vaka") return `
+    <div class="ega-vaka">
+      <div class="ega-vaka-label">Örnek Vaka</div>
+      <div class="ega-vaka-title">${esc(b.title)}</div>
+      <div class="ega-vaka-grid">
+        <div class="ega-vaka-col"><h5>Bağlam</h5><p>${esc(b.baglam)}</p></div>
+        <div class="ega-vaka-col"><h5>Analiz</h5><p>${esc(b.analiz)}</p></div>
+        <div class="ega-vaka-col"><h5>Sonuç</h5><p>${esc(b.sonuc)}</p></div>
+      </div>
+    </div>`;
+  if (b.type === "takeaways") return `
+    <div class="ega-takeaways">
+      <h4><span class="ega-h3-bar"></span>Temel Çıkarımlar</h4>
+      <ol>${b.items.map(t => `<li>${esc(t)}</li>`).join("")}</ol>
+    </div>`;
+  return "";
+}
+
+function renderHero(s) {
+  return `
+    <section class="ega-hero">
+      <div class="ega-hero-mark">Ek Gelir Akademi · Premium Edisyon</div>
+      <h1 class="ega-hero-title">Instagram Satış Sistemi: <em>Takipçiyi Müşteriye Çevir</em></h1>
+      <p class="ega-hero-sub">Instagram'da 100 bin takipçili hesaplar susarken 3 bin takipçili küçük hesaplar düzenli sipariş alıyor. Fark takipçi sayısı değil, satış sistemidir. Bu 10 bölümlük eğitim; satış zihniyetinden profil kurulumuna, alıcı avatarından satış odaklı içeriğe, Reels ve hikayelerden DM sürecine, bio link hunisinden sosyal kanıta ve ölçeklemeye — takipçiyi düzenli müşteriye çeviren tam sistemi kurar.</p>
+      <div class="ega-hero-meta">
+        <span><strong>10</strong> Bölüm</span>
+        <span><strong>Premium</strong> Satış Eğitimi</span>
+        <span><strong>2026</strong> Türkiye Sürümü</span>
+      </div>
+      <div class="ega-hero-rule"></div>
+      <h3 class="ega-h3"><span class="ega-h3-bar"></span>İçindekiler</h3>
+      <div class="ega-toc">
+        ${s.toc.map((t, i) => `
+          <button class="ega-toc-item" data-jump="${i+1}">
+            <span class="ega-toc-num">${String(i+1).padStart(2,"0")}</span>
+            <span class="ega-toc-label">${esc(t)}</span>
+          </button>`).join("")}
+      </div>
+    </section>`;
+}
+
+function renderSection(s, idx) {
+  if (s.hero) return renderHero(s);
+  return `
+    <section class="ega-section">
+      <div class="ega-section-eyebrow">Bölüm ${String(idx).padStart(2,"0")} · Ek Gelir Akademi</div>
+      <h2 class="ega-section-title">${s.title}</h2>
+      ${s.lead ? `<p class="ega-section-lead">${esc(s.lead)}</p>` : ""}
+      ${(s.blocks || []).map(renderBlock).join("")}
+    </section>`;
+}
+
+/* ============ State + Events ============ */
+const state = { activeIndex: 0 };
+const $nav = document.getElementById("nav");
+const $container = document.getElementById("sectionContainer");
+const $scroll = document.getElementById("scroll");
+const $progress = document.getElementById("progressFill");
+const $progressMini = document.getElementById("progressMini");
+const $prev = document.getElementById("prevBtn");
+const $next = document.getElementById("nextBtn");
+const $prevLabel = document.getElementById("prevLabel");
+const $nextLabel = document.getElementById("nextLabel");
+const $count = document.getElementById("pagerCount");
+const $sidebar = document.getElementById("sidebar");
+const $menuToggle = document.getElementById("menuToggle");
+
+// Build sidebar
+SECTIONS.forEach((s, i) => {
+  const btn = document.createElement("button");
+  btn.className = "ega-nav-item";
+  btn.dataset.idx = i;
+  btn.innerHTML = `<span class="num">${String(i+1).padStart(2,"0")}</span><span class="label">${esc(s.shortTitle)}</span>`;
+  btn.addEventListener("click", () => { setActive(i); $sidebar.classList.remove("open"); });
+  $nav.appendChild(btn);
+});
+
+function setActive(i) {
+  if (i < 0 || i >= SECTIONS.length) return;
+  state.activeIndex = i;
+  $container.innerHTML = renderSection(SECTIONS[i], i);
+  // Attach TOC click handlers if hero
+  $container.querySelectorAll(".ega-toc-item").forEach(el => {
+    el.addEventListener("click", () => setActive(parseInt(el.dataset.jump, 10)));
+  });
+  // Update sidebar active
+  document.querySelectorAll(".ega-nav-item").forEach((el, idx) => {
+    el.classList.toggle("active", idx === i);
+  });
+  // Progress
+  const pct = ((i + 1) / SECTIONS.length) * 100;
+  $progress.style.width = pct + "%";
+  if ($progressMini) $progressMini.style.width = pct + "%";
+  // Pager
+  $prev.disabled = (i === 0);
+  $next.disabled = (i === SECTIONS.length - 1);
+  $prevLabel.textContent = i > 0 ? SECTIONS[i - 1].shortTitle : "Başlangıç";
+  $nextLabel.textContent = i < SECTIONS.length - 1 ? SECTIONS[i + 1].shortTitle : "Son bölüm";
+  $count.textContent = `${String(i+1).padStart(2,"0")} / ${String(SECTIONS.length).padStart(2,"0")}`;
+  // Scroll top
+  $scroll.scrollTo({ top: 0, behavior: "smooth" });
+}
+
+$prev.addEventListener("click", () => setActive(state.activeIndex - 1));
+$next.addEventListener("click", () => setActive(state.activeIndex + 1));
+if ($menuToggle) $menuToggle.addEventListener("click", () => $sidebar.classList.toggle("open"));
+
+// Keyboard navigation
+document.addEventListener("keydown", (e) => {
+  if (e.key === "ArrowRight") setActive(state.activeIndex + 1);
+  if (e.key === "ArrowLeft") setActive(state.activeIndex - 1);
+});
+
+// Boot
+setActive(0);
+</script>
+</body>
+</html>
